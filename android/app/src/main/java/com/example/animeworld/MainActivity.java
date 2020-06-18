@@ -1,4 +1,4 @@
-package com.example.animeworld;
+package com.evolvingkid.animeworld;
 
 import io.flutter.embedding.android.FlutterActivity;
 
