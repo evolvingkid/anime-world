@@ -10,6 +10,7 @@ import 'package:animeworld/widgets/errorMsg.dart';
 import 'package:animeworld/widgets/mainBanner.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   List<AnimeCore> _animeMovies;
   List<AnimeCore> _animeOVA;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  AppUpdateInfo _updateInfo;
 
   pageReload() {
     setState(() {
@@ -72,6 +74,26 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _isLoading = false;
     });
+  }
+
+  Future<void> checkForUpdate() async {
+    InAppUpdate.checkForUpdate().then((info) {
+      //* update info
+      setState(() {
+        _updateInfo = info;
+      });
+
+      // * start background update
+      InAppUpdate.startFlexibleUpdate().then((_) {
+        // *install update
+        InAppUpdate.completeFlexibleUpdate().then((_) {
+        
+          _scaffoldKey.currentState
+              .showSnackBar(SnackBar(content: Text('App has been updated!')));
+              
+        }).catchError((e) => print('object'));
+      }).catchError((e) => print('object'));
+    }).catchError((e) => print('object'));
   }
 
   @override
