@@ -4,7 +4,6 @@ import 'package:animeworld/Provider/animeSearch.dart';
 import 'package:animeworld/Provider/animeSeries.dart';
 import 'package:animeworld/Provider/animeTorrent.dart';
 import 'package:animeworld/Provider/latestAnimes.dart';
-import 'package:animeworld/screens/search/searchScreen.dart';
 import 'package:animeworld/widgets/moreInfoBanner.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

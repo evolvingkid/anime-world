@@ -9,6 +9,7 @@ import '../global/serverDataSaver.dart' as gloabalFunction;
 class AnimeMovies with ChangeNotifier {
   List<AnimeCore> _animeMovies;
   int currentPage = 1;
+  bool isHomePageLoading = true;
 
   List<AnimeCore> get animeMovies {
     return [..._animeMovies];
@@ -22,6 +23,8 @@ class AnimeMovies with ChangeNotifier {
       final _decodeData = json.decode(_fetchData.body);
       _animeMovies = gloabalFunction.serverDataSaver(_decodeData, _animeMovies);
     } catch (e) {}
+    isHomePageLoading = false;
+    notifyListeners();
   }
 
    filterValueWithId(String id) {

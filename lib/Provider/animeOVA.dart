@@ -9,6 +9,7 @@ import '../global/serverDataSaver.dart' as gloabalFunction;
 class AnimeOVA with ChangeNotifier {
   List<AnimeCore> _animeOVA;
   int currentPage = 1;
+  bool isHomePageLoading = true;
 
   List<AnimeCore> get animeOVA {
     return [..._animeOVA];
@@ -23,6 +24,9 @@ class AnimeOVA with ChangeNotifier {
       
       _animeOVA = gloabalFunction.serverDataSaver(_decodeData, _animeOVA);
     } catch (e) {}
+
+    isHomePageLoading = false;
+    notifyListeners();
   }
 
     filterValueWithId(String id) {

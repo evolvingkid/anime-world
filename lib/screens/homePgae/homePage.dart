@@ -27,7 +27,6 @@ class _HomePageState extends State<HomePage> {
   List<AnimeCore> _animeMovies;
   List<AnimeCore> _animeOVA;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-  AppUpdateInfo _updateInfo;
 
   pageReload() {
     setState(() {
@@ -78,19 +77,12 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> checkForUpdate() async {
     InAppUpdate.checkForUpdate().then((info) {
-      //* update info
-      setState(() {
-        _updateInfo = info;
-      });
-
       // * start background update
       InAppUpdate.startFlexibleUpdate().then((_) {
         // *install update
         InAppUpdate.completeFlexibleUpdate().then((_) {
-        
           _scaffoldKey.currentState
               .showSnackBar(SnackBar(content: Text('App has been updated!')));
-              
         }).catchError((e) => print('object'));
       }).catchError((e) => print('object'));
     }).catchError((e) => print('object'));
@@ -107,71 +99,92 @@ class _HomePageState extends State<HomePage> {
     if (_isConnected) {
       return Scaffold(
         key: _scaffoldKey,
-        body: _isLoading
-            ? Center(child: CircularProgressIndicator())
-            : SafeArea(
-                child: SingleChildScrollView(
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(height: 10),
-                        CustomAppBar(
-                          appBarName: 'Anime world',
-                          isBackButton: false,
-                          istraling: true,
-                          traling: <Widget>[
-                            IconButton(
-                                icon: Icon(Icons.search),
-                                onPressed: () {
-                                  Navigator.of(context)
-                                      .pushNamed(SearchScreen.routeName);
-                                })
-                          ],
-                        ),
-                        const SizedBox(height: 30),
-                        BannerContainer(bannerList: _latestAnimeData),
-                        const SizedBox(
-                          height: 30,
-                        ),
-                        // *latest anime slide build
-                        AnimeSlideBanner(
-                          headingText: 'Series',
-                          onPressHeadingFunction: () {
-                            Navigator.of(context).pushNamed(
-                                SeeAllScreen.routeName,
-                                arguments: 'Series');
-                          },
-                          listOfdata: _animeSeries,
-                          animeType: 'Series',
-                        ),
-                        AnimeSlideBanner(
-                          headingText: 'Movies',
-                          onPressHeadingFunction: () {
-                            Navigator.of(context).pushNamed(
-                                SeeAllScreen.routeName,
-                                arguments: 'Movies');
-                          },
-                          animeType: 'Movies',
-                          listOfdata: _animeMovies,
-                        ),
-                        AnimeSlideBanner(
-                          headingText: 'OVA',
-                          onPressHeadingFunction: () {
-                            Navigator.of(context).pushNamed(
-                                SeeAllScreen.routeName,
-                                arguments: 'OVA');
-                          },
-                          animeType: 'OVA',
-                          listOfdata: _animeOVA,
-                        ),
-                      ],
-                    ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.all(10),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(height: 10),
+                  CustomAppBar(
+                    appBarName: 'Anime world',
+                    isBackButton: false,
+                    istraling: true,
+                    traling: <Widget>[
+                      IconButton(
+                          icon: Icon(Icons.search),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .pushNamed(SearchScreen.routeName);
+                          })
+                    ],
                   ),
-                ),
+                  const SizedBox(height: 30),
+                  //* adding banner anime
+                  Consumer<LatestAnimes>(
+                      builder: (ctx, latestAnimeData, _) =>
+                          latestAnimeData.homeScreenLoading
+                              ? CustomSkimmer()
+                              : BannerContainer(
+                                  bannerList: latestAnimeData.latestAnimeData)),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  // * anime series
+                  Consumer<AnimeSeries>(
+                    builder: (ctx, animeSeries, _) =>
+                        animeSeries.isHomeScreenLoading
+                            ? CustomSkimmer()
+                            : AnimeSlideBanner(
+                                headingText: 'Series',
+                                onPressHeadingFunction: () {
+                                  Navigator.of(context).pushNamed(
+                                      SeeAllScreen.routeName,
+                                      arguments: 'Series');
+                                },
+                                listOfdata: animeSeries.animeSeries,
+                                animeType: 'Series',
+                              ),
+                  ),
+                  // * anime moives
+                  Consumer<AnimeMovies>(
+                    builder: (ctx, animeMovies, _) =>
+                        animeMovies.isHomePageLoading
+                            ? CustomSkimmer()
+                            : AnimeSlideBanner(
+                                headingText: 'Movies',
+                                onPressHeadingFunction: () {
+                                  Navigator.of(context).pushNamed(
+                                      SeeAllScreen.routeName,
+                                      arguments: 'Movies');
+                                },
+                                animeType: 'Movies',
+                                listOfdata: animeMovies.animeMovies,
+                              ),
+                  ),
+                  // TODO: adding new loading feature to imporove the speed
+                  // * anime OVA
+                  Consumer<AnimeOVA>(
+                    builder: (ctx, animeOVA, _) => animeOVA.isHomePageLoading
+                        ? CustomSkimmer()
+                        : AnimeSlideBanner(
+                            headingText: 'OVA',
+                            onPressHeadingFunction: () {
+                              Navigator.of(context).pushNamed(
+                                  SeeAllScreen.routeName,
+                                  arguments: 'OVA');
+                            },
+                            animeType: 'OVA',
+                            listOfdata: animeOVA.animeOVA,
+                          ),
+                  ),
+                ],
               ),
+            ),
+          ),
+        ),
       );
     }
     return ErrorMessageShower(
@@ -188,5 +201,19 @@ class _HomePageState extends State<HomePage> {
             style: Theme.of(context).primaryTextTheme.bodyText1),
       ],
     );
+  }
+}
+
+class CustomSkimmer extends StatelessWidget {
+  const CustomSkimmer({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 250,
+        width: double.infinity,
+        child: Image.asset('assets/images/skimmer.png', fit: BoxFit.cover));
   }
 }

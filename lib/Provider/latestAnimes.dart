@@ -8,26 +8,34 @@ import '../global/serverDataSaver.dart' as gloabalFunction;
 
 class LatestAnimes with ChangeNotifier {
   List<AnimeCore> _latestAnimeData;
+  bool homeScreenLoading = true;
 
   List<AnimeCore> get latestAnimeData {
     return [..._latestAnimeData];
   }
 
   Future<void> fetchDataFromServer() async {
-    String _url = '${global.serverUrl}api/animeTrending?apikey=${global.apiKey}';
+    String _url =
+        '${global.serverUrl}api/animeTrending?apikey=${global.apiKey}';
 
     try {
       final _fetchData = await http.get(_url);
       final _decodeData = json.decode(_fetchData.body);
-    _latestAnimeData = gloabalFunction.serverDataSaver(_decodeData, _latestAnimeData);
+      _latestAnimeData =
+          gloabalFunction.serverDataSaver(_decodeData, _latestAnimeData);
     } catch (e) {
-      throw e;
+      
     }
+
+    homeScreenLoading = false;
+    notifyListeners();
   }
-   filterValueWithId(String id) {
+
+  filterValueWithId(String id) {
     if (_latestAnimeData.isNotEmpty) {
-      List filterData = _latestAnimeData.where((data) => data.id == id).toList();
-    return filterData;
+      List filterData =
+          _latestAnimeData.where((data) => data.id == id).toList();
+      return filterData;
     }
   }
 }

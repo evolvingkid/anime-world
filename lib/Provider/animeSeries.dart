@@ -9,6 +9,7 @@ import '../global/serverDataSaver.dart' as gloabalFunction;
 class AnimeSeries with ChangeNotifier {
   List<AnimeCore> _animeSeries;
   int currentPage = 1;
+  bool isHomeScreenLoading = true;
 
   List<AnimeCore> get animeSeries {
     return [..._animeSeries];
@@ -22,7 +23,10 @@ class AnimeSeries with ChangeNotifier {
       final _decodeData = json.decode(_fetchData.body);
       _animeSeries = gloabalFunction.serverDataSaver(_decodeData, _animeSeries);
     } catch (e) {}
-    print('data get');
+
+   isHomeScreenLoading = false;
+   notifyListeners();
+   
   }
 
   filterValueWithId(String id) {
