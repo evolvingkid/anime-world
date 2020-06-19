@@ -31,7 +31,9 @@ List serverDataSaver(dynamic decodeData, List realList) {
         status: decodeData[i]['status'],
         description: decodeData[i]['description'],
         season: decodeData[i]['season'],
-        seasonYear: double.parse(decodeData[i]['seasonYear']),
+        seasonYear: decodeData[i]['seasonYear'] != null
+            ? double.parse(decodeData[i]['seasonYear'])
+            : null,
         duration: decodeData[i]['duration'],
         isAdult: decodeData[i]['isAdult'],
         avgScore: decodeData[i]['averageScore'],
