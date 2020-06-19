@@ -44,7 +44,6 @@ class _HomePageState extends State<HomePage> {
 
         Provider.of<AnimeOVA>(context, listen: false).fetchDataFromServer();
       } catch (e) {
-        print('object');
         print(e);
         setState(() {
           _errorMsg = "Server error occured";
