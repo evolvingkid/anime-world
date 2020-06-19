@@ -2,7 +2,6 @@ import 'package:animeworld/Provider/animeMovies.dart';
 import 'package:animeworld/Provider/animeOVA.dart';
 import 'package:animeworld/Provider/animeSeries.dart';
 import 'package:animeworld/Provider/latestAnimes.dart';
-import 'package:animeworld/models/animeCore.dart';
 import 'package:animeworld/screens/search/searchScreen.dart';
 import 'package:animeworld/screens/seeAllScreen/seeAllScreen.dart';
 import 'package:animeworld/widgets/animeSlideBanner.dart';
@@ -19,18 +18,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool _isLoading = true;
   bool _isConnected = true;
   String _errorMsg;
-  List<AnimeCore> _latestAnimeData;
-  List<AnimeCore> _animeSeries;
-  List<AnimeCore> _animeMovies;
-  List<AnimeCore> _animeOVA;
+
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
   pageReload() {
     setState(() {
-      _isLoading = true;
       _isConnected = true;
     });
     dataCollection();
@@ -42,22 +36,15 @@ class _HomePageState extends State<HomePage> {
     if (_isConnection) {
       try {
         // * where all the data area fetched
-        await Provider.of<LatestAnimes>(context, listen: false)
-            .fetchDataFromServer();
-        _latestAnimeData =
-            Provider.of<LatestAnimes>(context, listen: false).latestAnimeData;
-        await Provider.of<AnimeSeries>(context, listen: false)
-            .fetchDataFromServer();
-        _animeSeries =
-            Provider.of<AnimeSeries>(context, listen: false).animeSeries;
-        await Provider.of<AnimeMovies>(context, listen: false)
-            .fetchDataFromServer();
-        _animeMovies =
-            Provider.of<AnimeMovies>(context, listen: false).animeMovies;
-        await Provider.of<AnimeOVA>(context, listen: false)
-            .fetchDataFromServer();
-        _animeOVA = Provider.of<AnimeOVA>(context, listen: false).animeOVA;
+        Provider.of<LatestAnimes>(context, listen: false).fetchDataFromServer();
+
+        Provider.of<AnimeSeries>(context, listen: false).fetchDataFromServer();
+
+        Provider.of<AnimeMovies>(context, listen: false).fetchDataFromServer();
+
+        Provider.of<AnimeOVA>(context, listen: false).fetchDataFromServer();
       } catch (e) {
+        print('object');
         print(e);
         setState(() {
           _errorMsg = "Server error occured";
@@ -70,9 +57,6 @@ class _HomePageState extends State<HomePage> {
         _isConnected = false;
       });
     }
-    setState(() {
-      _isLoading = false;
-    });
   }
 
   Future<void> checkForUpdate() async {
@@ -164,7 +148,6 @@ class _HomePageState extends State<HomePage> {
                                 listOfdata: animeMovies.animeMovies,
                               ),
                   ),
-                  // TODO: adding new loading feature to imporove the speed
                   // * anime OVA
                   Consumer<AnimeOVA>(
                     builder: (ctx, animeOVA, _) => animeOVA.isHomePageLoading

@@ -7,7 +7,7 @@ import 'package:animeworld/models/animeCore.dart';
 import '../global/serverDataSaver.dart' as gloabalFunction;
 
 class AnimeSeries with ChangeNotifier {
-  List<AnimeCore> _animeSeries;
+  List<AnimeCore> _animeSeries = [];
   int currentPage = 1;
   bool isHomeScreenLoading = true;
 
@@ -22,7 +22,9 @@ class AnimeSeries with ChangeNotifier {
       final _fetchData = await http.get(_url);
       final _decodeData = json.decode(_fetchData.body);
       _animeSeries = gloabalFunction.serverDataSaver(_decodeData, _animeSeries);
-    } catch (e) {}
+    } catch (e) {
+      throw e;
+    }
 
    isHomeScreenLoading = false;
    notifyListeners();
@@ -51,7 +53,9 @@ class AnimeSeries with ChangeNotifier {
       if (fetchAnime.isEmpty) {
         fetchDataFromServerPagination();
       }
-    } catch (e) {}
+    } catch (e) {
+      throw e;
+    }
     currentPage++;
     notifyListeners();
   }

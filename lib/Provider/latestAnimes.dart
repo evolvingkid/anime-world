@@ -24,7 +24,7 @@ class LatestAnimes with ChangeNotifier {
       _latestAnimeData =
           gloabalFunction.serverDataSaver(_decodeData, _latestAnimeData);
     } catch (e) {
-      
+      print('error on latest anime');
     }
 
     homeScreenLoading = false;
