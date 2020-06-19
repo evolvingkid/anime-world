@@ -24,7 +24,7 @@ List serverDataSaver(dynamic decodeData, List realList) {
         tag: decodeData[i]['Tag'],
         streamEpisode: decodeData[i]['streamEpisode'],
         id: decodeData[i]['_id'],
-        title: decodeData[i]['title'],
+        title: decodeData[i]['title'].substring(1),
         author: decodeData[i]['author'],
         anilistId: decodeData[i]['anilistid'],
         type: decodeData[i]['type'],

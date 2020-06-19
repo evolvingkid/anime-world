@@ -81,12 +81,9 @@ class AnimeSlideBanner extends StatelessWidget {
                                 borderRadius: BorderRadius.only(
                                     bottomLeft: Radius.circular(10.0),
                                     bottomRight: Radius.circular(10.0))),
-                            child: Hero(
-                              tag: listOfdata[index].title,
-                              child: Text(
-                                listOfdata[index].title,
-                                style: TextStyle(color: Colors.white),
-                              ),
+                            child: Text(
+                              listOfdata[index].title,
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         )
