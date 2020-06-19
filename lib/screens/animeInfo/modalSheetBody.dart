@@ -54,7 +54,9 @@ class AnimeTorrentBottomModelSheetBody extends StatelessWidget {
       builder: (ctx, animeData, _) => animeData.isTorrent
           ? Center(child: CircularProgressIndicator())
           : animeData.animeTorrentData.length == 0
-              ? Text('No data Found from torrent')
+              ? Center(
+                  child: Text('No data Found from torrent',
+                      style: TextStyle(color: Colors.white)))
               : Expanded(
                   child: ListView.builder(
                     itemCount: animeData.animeTorrentData.length,
