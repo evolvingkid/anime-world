@@ -21,14 +21,14 @@ class InfoBanner extends StatefulWidget {
 class _InfoBannerState extends State<InfoBanner> {
   double containerHedight = 80;
   bool isExpanded = false;
-
+  
   _onMoreBtnPressed() async {
     if (containerHedight == 80) {
       setState(() {
         containerHedight = 150;
       });
 
-      await Future.delayed(const Duration(milliseconds: 500), () {
+      await Future.delayed(const Duration(milliseconds: 200), () {
         setState(() {
           isExpanded = true;
         });
@@ -44,7 +44,7 @@ class _InfoBannerState extends State<InfoBanner> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-        duration: Duration(milliseconds: 500),
+        duration: Duration(milliseconds: 200),
         height: containerHedight,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(

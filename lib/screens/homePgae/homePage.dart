@@ -112,9 +112,7 @@ class _HomePageState extends State<HomePage> {
                               ? CustomSkimmer()
                               : BannerContainer(
                                   bannerList: latestAnimeData.latestAnimeData)),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   // * anime series
                   Consumer<AnimeSeries>(
                     builder: (ctx, animeSeries, _) =>
@@ -131,6 +129,7 @@ class _HomePageState extends State<HomePage> {
                                 animeType: 'Series',
                               ),
                   ),
+
                   // * anime moives
                   Consumer<AnimeMovies>(
                     builder: (ctx, animeMovies, _) =>
