@@ -23,7 +23,7 @@ class SearchScreen extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Search for Anime',
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white60),
                   focusedBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   errorBorder: InputBorder.none,
@@ -38,11 +38,13 @@ class SearchScreen extends StatelessWidget {
             ),
             Expanded(
               child: Consumer<AnimeSearch>(
-                builder: (ctx, animeData, _) => Container(
-                  child: ViewingGrid(
-                      argumnets: 'search',
-                      animeData: animeData.animeSearchData),
-                ),
+                builder: (ctx, animeData, _) => animeData.isSearchLoading
+                    ? Center(child: CircularProgressIndicator())
+                    : Container(
+                      padding: EdgeInsets.all(10),
+                        child: ViewingGrid(
+                            argumnets: 'search',
+                            animeData: animeData.animeSearchData)),
               ),
             )
           ],
