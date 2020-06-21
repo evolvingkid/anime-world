@@ -13,9 +13,7 @@ import 'screens/animeInfo/animeDetails.dart';
 import 'screens/homePgae/homePage.dart';
 import 'screens/seeAllScreen/seeAllScreen.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

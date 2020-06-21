@@ -66,9 +66,9 @@ class _HomePageState extends State<HomePage> {
         InAppUpdate.completeFlexibleUpdate().then((_) {
           _scaffoldKey.currentState
               .showSnackBar(SnackBar(content: Text('App has been updated!')));
-        }).catchError((e) => print('object'));
-      }).catchError((e) => print('object'));
-    }).catchError((e) => print('object'));
+        });
+      });
+    });
   }
 
   @override
@@ -120,11 +120,10 @@ class _HomePageState extends State<HomePage> {
                             ? CustomSkimmer()
                             : AnimeSlideBanner(
                                 headingText: 'Series',
-                                onPressHeadingFunction: () {
-                                  Navigator.of(context).pushNamed(
-                                      SeeAllScreen.routeName,
-                                      arguments: 'Series');
-                                },
+                                onPressHeadingFunction: () =>
+                                    Navigator.of(context).pushNamed(
+                                        SeeAllScreen.routeName,
+                                        arguments: 'Series'),
                                 listOfdata: animeSeries.animeSeries,
                                 animeType: 'Series',
                               ),
@@ -137,11 +136,10 @@ class _HomePageState extends State<HomePage> {
                             ? CustomSkimmer()
                             : AnimeSlideBanner(
                                 headingText: 'Movies',
-                                onPressHeadingFunction: () {
-                                  Navigator.of(context).pushNamed(
-                                      SeeAllScreen.routeName,
-                                      arguments: 'Movies');
-                                },
+                                onPressHeadingFunction: () =>
+                                    Navigator.of(context).pushNamed(
+                                        SeeAllScreen.routeName,
+                                        arguments: 'Movies'),
                                 animeType: 'Movies',
                                 listOfdata: animeMovies.animeMovies,
                               ),
@@ -152,11 +150,9 @@ class _HomePageState extends State<HomePage> {
                         ? CustomSkimmer()
                         : AnimeSlideBanner(
                             headingText: 'OVA',
-                            onPressHeadingFunction: () {
-                              Navigator.of(context).pushNamed(
-                                  SeeAllScreen.routeName,
-                                  arguments: 'OVA');
-                            },
+                            onPressHeadingFunction: () => Navigator.of(context)
+                                .pushNamed(SeeAllScreen.routeName,
+                                    arguments: 'OVA'),
                             animeType: 'OVA',
                             listOfdata: animeOVA.animeOVA,
                           ),

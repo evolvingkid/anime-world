@@ -33,34 +33,35 @@ class AnimeDetails extends StatelessWidget {
   }
 
   acessData(context) {
-    if (_argumnets['type'] == 'Series') {
-      animeData =
-          Provider.of<AnimeSeries>(context).filterValueWithId(_argumnets['id']);
-    }
+    switch (_argumnets['type']) {
+      case 'Series':
+        animeData = Provider.of<AnimeSeries>(context)
+            .filterValueWithId(_argumnets['id']);
+        break;
+      case 'Movies':
+        animeData = Provider.of<AnimeMovies>(context)
+            .filterValueWithId(_argumnets['id']);
+        break;
+      case 'OVA':
+        animeData =
+            Provider.of<AnimeOVA>(context).filterValueWithId(_argumnets['id']);
+        break;
+      case 'animeLatest':
+        animeData = Provider.of<LatestAnimes>(context)
+            .filterValueWithId(_argumnets['id']);
+        break;
+      case 'search':
+        animeData = Provider.of<AnimeSearch>(context)
+            .filterValueWithId(_argumnets['id']);
+        break;
 
-    if (_argumnets['type'] == 'Movies') {
-      animeData =
-          Provider.of<AnimeMovies>(context).filterValueWithId(_argumnets['id']);
+      default:
+        animeData = [];
     }
-
-    if (_argumnets['type'] == 'OVA') {
-      animeData =
-          Provider.of<AnimeOVA>(context).filterValueWithId(_argumnets['id']);
-    }
-
-    if (_argumnets['type'] == 'animeLatest') {
-      animeData = Provider.of<LatestAnimes>(context)
-          .filterValueWithId(_argumnets['id']);
-    }
-    if (_argumnets['type'] == 'search') {
-      animeData = Provider.of<AnimeSearch>(context)
-          .filterValueWithId(_argumnets['id']);
-    }
-
-    print(animeData[0].title);
 
     Provider.of<AnimeTorrent>(context, listen: false)
         .fetchDataFromServer(title: animeData[0].title);
+        
     decription = animeData[0].description.replaceAll('<br>', ' ');
     decription = decription.replaceAll('<i>', ' ');
     decription = decription.replaceAll('</i>', ' ');
