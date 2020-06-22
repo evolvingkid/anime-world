@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/home/evolvingkid/Documents/flutter/animeworld/build/native_flutter_admob/intermediates/res/merged/release/color/common_google_signin_btn_text_dark.xml",
+        "source": "/home/evolvingkid/.gradle/caches/transforms-2/files-2.1/33835b677b33a23cbde6cb3a9a49e57b/jetified-play-services-base-15.0.1/res/color/common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "/home/evolvingkid/Documents/flutter/animeworld/build/native_flutter_admob/intermediates/res/merged/release/color/common_google_signin_btn_text_light.xml",
+        "source": "/home/evolvingkid/.gradle/caches/transforms-2/files-2.1/33835b677b33a23cbde6cb3a9a49e57b/jetified-play-services-base-15.0.1/res/color/common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "/home/evolvingkid/Documents/flutter/animeworld/build/native_flutter_admob/intermediates/res/merged/release/color/common_google_signin_btn_tint.xml",
+        "source": "/home/evolvingkid/.gradle/caches/transforms-2/files-2.1/33835b677b33a23cbde6cb3a9a49e57b/jetified-play-services-base-15.0.1/res/color/common_google_signin_btn_tint.xml"
+    }
+]

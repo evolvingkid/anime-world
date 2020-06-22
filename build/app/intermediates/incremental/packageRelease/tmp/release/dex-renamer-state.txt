@@ -1,0 +1,4 @@
+#Mon Jun 22 08:57:51 IST 2020
+base.0=/home/evolvingkid/Documents/flutter/animeworld/build/app/intermediates/dex/release/mergeDexRelease/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

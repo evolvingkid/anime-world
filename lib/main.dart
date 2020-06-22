@@ -3,7 +3,6 @@ import 'package:animeworld/Provider/animeTorrent.dart';
 import 'package:animeworld/screens/search/searchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'Provider/animeMovies.dart';
 import 'Provider/animeOVA.dart';
 import 'Provider/animeSeries.dart';
@@ -13,7 +12,8 @@ import 'screens/animeInfo/animeDetails.dart';
 import 'screens/homePgae/homePage.dart';
 import 'screens/seeAllScreen/seeAllScreen.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

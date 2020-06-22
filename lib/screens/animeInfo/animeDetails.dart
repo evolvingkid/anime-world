@@ -4,11 +4,11 @@ import 'package:animeworld/Provider/animeSearch.dart';
 import 'package:animeworld/Provider/animeSeries.dart';
 import 'package:animeworld/Provider/animeTorrent.dart';
 import 'package:animeworld/Provider/latestAnimes.dart';
-import 'package:animeworld/widgets/moreInfoBanner.dart';
+import 'package:animeworld/widgets/animeDetailsWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'modalSheetBody.dart';
+import '../../global/descDataFormactor.dart' as global;
 
 class AnimeDetails extends StatelessWidget {
   static const routeName = './animeDetails';
@@ -61,10 +61,7 @@ class AnimeDetails extends StatelessWidget {
 
     Provider.of<AnimeTorrent>(context, listen: false)
         .fetchDataFromServer(title: animeData[0].title);
-        
-    decription = animeData[0].description.replaceAll('<br>', ' ');
-    decription = decription.replaceAll('<i>', ' ');
-    decription = decription.replaceAll('</i>', ' ');
+    decription = global.descDataFormactor(animeData[0].description);
   }
 
   @override
@@ -91,22 +88,10 @@ class AnimeDetails extends StatelessWidget {
                 children: <Widget>[
                   headingTxt(context),
                   const SizedBox(height: 30),
-                  statusBanner(context, screenWidth),
-                  const SizedBox(height: 20),
-                  Text('Description',
-                      style: Theme.of(context).primaryTextTheme.headline5),
-                  const SizedBox(height: 10),
-                  Text(decription,
-                      style: Theme.of(context).primaryTextTheme.bodyText1),
-                  const SizedBox(height: 20),
-                  InfoBanner(
-                    stattics1: 'Type : ${animeData[0].type}',
-                    stattics2: 'Season: ${animeData[0].season}',
-                    stattics3: 'Status : ${animeData[0].status}',
-                    stattics4:
-                        'SeasonYear: ${animeData[0].seasonYear.toString()}',
-                    stattics5: 'Tag:',
-                  ),
+                  AnimeDetailsWidegts(
+                      screenWidth: screenWidth,
+                      decription: decription,
+                      animeData: animeData[0]),
                   const SizedBox(height: 20),
                   Text('Avalibility',
                       style: Theme.of(context).primaryTextTheme.headline5),
@@ -160,58 +145,9 @@ class AnimeDetails extends StatelessWidget {
     );
   }
 
-  Container statusBanner(BuildContext context, double screenWidth) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: BorderRadius.circular(10)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          bannerContents(context, screenWidth,
-              headingTxt: 'Average Score',
-              statusTxt: animeData[0].avgScore.toString()),
-          bannerContents(context, screenWidth,
-              headingTxt: 'Popularity',
-              statusTxt: animeData[0].popularity.toString(),
-              exeptionCaseWidth: screenWidth * 0.23),
-          bannerContents(context, screenWidth,
-              headingTxt: 'Duration',
-              statusTxt: animeData[0].duration.toString())
-        ],
-      ),
-    );
-  }
-
-  Container bannerContents(BuildContext context, double screenWidth,
-      {@required String headingTxt,
-      @required String statusTxt,
-      double exeptionCaseWidth}) {
-    return Container(
-      width: screenWidth * 0.3,
-      child:
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: <Widget>[
-        Text(headingTxt, style: Theme.of(context).primaryTextTheme.bodyText1),
-        Container(
-            width: exeptionCaseWidth == null
-                ? screenWidth * 0.1
-                : exeptionCaseWidth,
-            child: FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Text(statusTxt,
-                    style: Theme.of(context).primaryTextTheme.headline5)))
-      ]),
-    );
-  }
-
-  Hero headingTxt(BuildContext context) {
-    return Hero(
-        tag: animeData[0].title,
-        child: Text(animeData[0].title,
-            style: Theme.of(context).primaryTextTheme.headline5));
+  Text headingTxt(BuildContext context) {
+    return Text(animeData[0].title,
+        style: Theme.of(context).primaryTextTheme.headline5);
   }
 
   Hero frontImageBanner(context) {

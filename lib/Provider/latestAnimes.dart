@@ -9,6 +9,7 @@ import '../global/serverDataSaver.dart' as gloabalFunction;
 class LatestAnimes with ChangeNotifier {
   List<AnimeCore> _latestAnimeData;
   bool homeScreenLoading = true;
+  int latestAnime = 0;
 
   List<AnimeCore> get latestAnimeData {
     return [..._latestAnimeData];
@@ -37,5 +38,13 @@ class LatestAnimes with ChangeNotifier {
           _latestAnimeData.where((data) => data.id == id).toList();
       return filterData;
     }
+  }
+
+  // for the banner chnager
+  void changeLatestAnime(int val) {
+    if (val != -1) {
+      latestAnime = val;
+    }
+    notifyListeners();
   }
 }
