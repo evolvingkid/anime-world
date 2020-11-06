@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 
 class DioAPIServices extends BaseAPIConfig {
   BaseOptions options = new BaseOptions(
-    baseUrl: "#",
+    baseUrl: "http://animeworld.api.kaimly.com/",
     connectTimeout: 10000,
     receiveTimeout: 10000,
   );
