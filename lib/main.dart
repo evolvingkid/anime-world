@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import './screens/animeworldscreens.dart';
+import 'core/services/dependencyInjection.dart';
 import 'core/themes/themes.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  serviceLocators();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
