@@ -1,9 +1,11 @@
+import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:animeworld/screens/dashboard/Wallpaper.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:animeworld/widgets/NewsItemTile.dart';
 import 'package:animeworld/widgets/WallpaperItem.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
 class Home extends StatelessWidget {
@@ -44,18 +46,17 @@ class Home extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 193,
-              child: ListView(
-                padding: EdgeInsets.only(top: 10),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                ],
-              ),
+              child: GetX<AnimeState>(builder: (_controller) {
+                return ListView.builder(
+                  itemCount: _controller.ongoingAnime.length,
+                  padding: EdgeInsets.only(top: 10),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (BuildContext context, int index) {
+                    return AnimeItem(
+                        title: _controller.ongoingAnime[index].title);
+                  },
+                );
+              }),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
