@@ -1,9 +1,11 @@
+import 'package:animeworld/widgets/NewsItemTileWide.dart';
 import 'package:flutter/material.dart';
 import '../../core/configs/variables.dart' as config;
 
 class News extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final scWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -26,7 +28,31 @@ class News extends StatelessWidget {
           ],
         ),
       ),
-      body: Container(),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(10),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            "Trending News",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          ListView(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(top: 10),
+            scrollDirection: Axis.vertical,
+            children: [
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+              NewsItemTileWide(scWidth: scWidth),
+            ],
+          ),
+        ]),
+      ),
     );
   }
 }
