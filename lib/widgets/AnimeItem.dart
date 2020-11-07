@@ -2,9 +2,16 @@ import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
 
 class AnimeItem extends StatelessWidget {
-  const AnimeItem({Key key, this.width}) : super(key: key);
+  const AnimeItem(
+      {Key key,
+      this.width,
+      this.imageUrl = 'assets/images/test_img.jpg',
+      this.title = 'Boku no Hero'})
+      : super(key: key);
 
   final double width;
+  final String imageUrl;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class AnimeItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Image.asset(
-              'assets/images/test_img.jpg',
+              imageUrl,
               fit: BoxFit.cover,
               height: 183,
               width: width != null ? width - 120 : 127,
@@ -40,12 +47,8 @@ class AnimeItem extends StatelessWidget {
               width: width != null ? width - 120 : 127,
               padding: EdgeInsets.all(5),
               alignment: Alignment.bottomLeft,
-              child: Text(
-                "Boku no Tonari ni Ankoku Hakaishin ga Imasu",
-                maxLines: 2,
-                style: white14,
-                overflow: TextOverflow.ellipsis,
-              ),
+              child: Text(title,
+                  maxLines: 2, style: white14, overflow: TextOverflow.ellipsis),
             ),
           ),
         ],

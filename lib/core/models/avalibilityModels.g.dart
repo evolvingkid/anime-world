@@ -8,7 +8,7 @@ part of 'avalibilityModels.dart';
 
 class AnimeAvalibilityAdapter extends TypeAdapter<AnimeAvalibility> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
   AnimeAvalibility read(BinaryReader reader) {
