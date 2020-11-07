@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:animeworld/core/configs/BaseAPIConfig.dart';
 import 'package:animeworld/core/errors/httpExpections.dart';
 import 'package:dio/dio.dart';
@@ -7,8 +6,8 @@ import 'package:dio/dio.dart';
 class DioAPIServices extends BaseAPIConfig {
   BaseOptions options = new BaseOptions(
     baseUrl: "http://animeworld.api.kaimly.com/",
-    connectTimeout: 10000,
-    receiveTimeout: 10000,
+    connectTimeout: 20000,
+    receiveTimeout: 20000,
   );
 
   @override
@@ -16,7 +15,7 @@ class DioAPIServices extends BaseAPIConfig {
     try {
       Dio _dio = new Dio(options);
       Response _response =
-          await _dio.request("/test", options: Options(method: "GET"));
+          await _dio.request(url, options: Options(method: "GET"));
 
       if (_response.statusCode < 200 && _response.statusCode > 226)
       throw HttpException('', _response.statusCode);
