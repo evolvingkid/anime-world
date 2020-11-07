@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Anime World',
       theme: themes(),
+      darkTheme: darkThemes(),
       routes: {},
+      themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: DashboardScreen(),
     );
