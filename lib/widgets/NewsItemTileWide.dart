@@ -18,46 +18,58 @@ class NewsItemTileWide extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color: dark,
       ),
-      height: 80,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      height: 200,
+      child: Stack(
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(10),
-              bottomLeft: Radius.circular(10),
-            ),
+            borderRadius: BorderRadius.circular(10),
             child: Image.asset(
               'assets/images/test_img.jpg',
-              height: 80,
-              width: 100,
+              height: 200,
+              width: double.infinity,
               fit: BoxFit.cover,
             ),
           ),
-          Container(
-            width: scWidth - 140,
-            padding: EdgeInsets.all(10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  "Hayku and rent a fireforce is making a big move ",
-                  style: Theme.of(context).textTheme.headline6.merge(
-                        TextStyle(color: Colors.white),
-                      ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+          Positioned(
+            bottom: 0,
+            right: 0,
+            left: 0,
+            child: Container(
+              height: 80,
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
                 ),
-                Text(
-                  "rent a fireforce is making a big move  fireforce is making a big move fireforce is making a big move",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .merge(TextStyle(color: Colors.white)),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Colors.black38, Colors.black87]),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(
+                    "Hayku and rent a fireforce is making a big move ",
+                    style: Theme.of(context).textTheme.headline6.merge(
+                          TextStyle(color: Colors.white),
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    "rent a fireforce is making a big move  fireforce is making a big move fireforce is making a big move",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        .merge(TextStyle(color: Colors.white)),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
             ),
           ),
         ],
