@@ -17,9 +17,9 @@ class AnimeState extends GetxController {
   List<AnimeModels> get seriesAnime =>
       _animeData.where((e) => e.itemType.toUpperCase() == 'SERIES').toList();
   List<AnimeModels> get moviesAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'SERIES').toList();
+      _animeData.where((e) => e.itemType.toUpperCase() == 'MOVIES').toList();
   List<AnimeModels> get ovaAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'SERIES').toList();
+      _animeData.where((e) => e.itemType.toUpperCase() == 'OVA').toList();
 
   @override
   void onInit() {
