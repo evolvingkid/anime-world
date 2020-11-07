@@ -36,8 +36,6 @@ class AnimeState extends GetxController {
 
     _url = animeQueryMaker(url: _url, title: title, itemType: itemType);
 
-    print(_url);
-
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
