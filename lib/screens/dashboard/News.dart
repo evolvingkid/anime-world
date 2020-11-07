@@ -14,7 +14,7 @@ class News extends StatelessWidget {
               children: [
                 Text(
                   "Anime News",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 Text(
                   "Latest Anime News",

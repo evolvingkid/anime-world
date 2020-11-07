@@ -13,19 +13,53 @@ TextTheme accentTextTheme() => TextTheme(
 
 TextTheme textTheme() => TextTheme(
       //! text color may be white as default
+
+      headline5: TextStyle(
+        fontFamily: 'QuattrocentoSans',
+        fontWeight: FontWeight.w800,
+        fontSize: 16,
+      ),
+      headline4: TextStyle(
+        fontFamily: 'QuattrocentoSans',
+        fontWeight: FontWeight.w800,
+        fontSize: 18,
+      ),
       headline6: TextStyle(
-          fontFamily: 'QuattrocentoSans', fontWeight: FontWeight.w800),
+        fontFamily: 'QuattrocentoSans',
+        fontWeight: FontWeight.w900,
+        fontSize: 14,
+      ),
       bodyText1: TextStyle(fontFamily: 'QuattrocentoSans'),
       bodyText2: TextStyle(fontFamily: 'QuattrocentoSans'),
     );
 
 TextTheme darkTextTheme() => TextTheme(
       //! text color may be white as default
+
+      headline5: TextStyle(
+        fontFamily: 'QuattrocentoSans',
+        fontWeight: FontWeight.w800,
+        color: Colors.white,
+        fontSize: 16,
+      ),
+      headline4: TextStyle(
+        fontFamily: 'QuattrocentoSans',
+        fontWeight: FontWeight.w800,
+        color: Colors.white,
+        fontSize: 18,
+      ),
       headline6: TextStyle(
           fontFamily: 'QuattrocentoSans',
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w900,
+          fontSize: 14,
           color: Colors.white),
       bodyText1: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
       subtitle2: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
       bodyText2: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
     );
+
+TextStyle white14 = new TextStyle(
+  fontSize: 14,
+  color: Colors.white,
+  fontFamily: 'QuattrocentoSans',
+);

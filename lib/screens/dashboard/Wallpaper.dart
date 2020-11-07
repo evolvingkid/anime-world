@@ -14,7 +14,7 @@ class Wallpaper extends StatelessWidget {
               children: [
                 Text(
                   "Anime Wallpaper",
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.headline5,
                 ),
                 Text(
                   "Your favorite Anime wallpapers",
