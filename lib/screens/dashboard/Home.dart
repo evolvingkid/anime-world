@@ -52,8 +52,7 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.only(top: 10),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (BuildContext context, int index) {
-                    return AnimeItem(
-                        title: _controller.ongoingAnime[index].title);
+                    return AnimeItem(data: _controller.ongoingAnime[index]);
                   },
                 );
               }),

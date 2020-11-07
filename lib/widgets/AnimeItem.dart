@@ -1,3 +1,4 @@
+import 'package:animeworld/core/models/animeModels.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,12 @@ class AnimeItem extends StatelessWidget {
       {Key key,
       this.width,
       this.imageUrl = 'assets/images/test_img.jpg',
-      this.title = 'Boku no Hero'})
+      this.data})
       : super(key: key);
 
   final double width;
   final String imageUrl;
-  final String title;
+  final AnimeModels data;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +27,8 @@ class AnimeItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.asset(
-              imageUrl,
+            child: Image.network(
+              data.coverImg,
               fit: BoxFit.cover,
               height: 183,
               width: width != null ? width - 120 : 127,
@@ -35,19 +36,23 @@ class AnimeItem extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
+            right: 0,
+            left: 0,
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
                 gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Colors.black26, Colors.black54]),
+                    colors: [Colors.black38, Colors.black54]),
               ),
-              height: 45,
               width: width != null ? width - 120 : 127,
               padding: EdgeInsets.all(5),
               alignment: Alignment.bottomLeft,
-              child: Text(title,
+              child: Text(data.title,
                   maxLines: 2, style: white14, overflow: TextOverflow.ellipsis),
             ),
           ),

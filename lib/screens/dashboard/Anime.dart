@@ -1,5 +1,7 @@
+import 'package:animeworld/core/getx/animesState.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import '../../core/configs/variables.dart' as config;
 
 class Anime extends StatelessWidget {
@@ -40,18 +42,19 @@ class Anime extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 193,
-              child: ListView(
-                padding: EdgeInsets.only(top: 10),
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                  AnimeItem(width: scWidth),
-                ],
+              child: GetX<AnimeState>(
+                builder: (_controller) {
+                  return ListView.builder(
+                    itemCount: _controller.ongoingAnime.length,
+                    padding: EdgeInsets.only(top: 10),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimeItem(
+                          width: scWidth,
+                          data: _controller.ongoingAnime[index]);
+                    },
+                  );
+                },
               ),
             ),
             Padding(
@@ -64,16 +67,17 @@ class Anime extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 183,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                ],
+              child: GetX<AnimeState>(
+                builder: (_controller) {
+                  return ListView.builder(
+                    itemCount: _controller.seriesAnime.length,
+                    padding: EdgeInsets.only(top: 10),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimeItem(data: _controller.seriesAnime[index]);
+                    },
+                  );
+                },
               ),
             ),
             Padding(
@@ -86,16 +90,17 @@ class Anime extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 183,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                ],
+              child: GetX<AnimeState>(
+                builder: (_controller) {
+                  return ListView.builder(
+                    itemCount: _controller.moviesAnime.length,
+                    padding: EdgeInsets.only(top: 10),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimeItem(data: _controller.moviesAnime[index]);
+                    },
+                  );
+                },
               ),
             ),
             Padding(
@@ -108,16 +113,17 @@ class Anime extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 183,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                  AnimeItem(),
-                ],
+              child: GetX<AnimeState>(
+                builder: (_controller) {
+                  return ListView.builder(
+                    itemCount: _controller.ovaAnime.length,
+                    padding: EdgeInsets.only(top: 10),
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (BuildContext context, int index) {
+                      return AnimeItem(data: _controller.ovaAnime[index]);
+                    },
+                  );
+                },
               ),
             ),
           ],
