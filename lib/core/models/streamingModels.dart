@@ -22,7 +22,7 @@ class StreamingModels {
   });
 
  static StreamingModels covert(Map data) {
-
+ if (data == null) return null;
     StreamingModels _streamingData = StreamingModels(
       site: data['site'],
       title: data['title'],

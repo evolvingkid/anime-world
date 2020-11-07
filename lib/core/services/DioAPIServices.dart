@@ -3,11 +3,8 @@ import 'package:animeworld/core/errors/httpExpections.dart';
 import 'package:dio/dio.dart';
 
 class DioAPIServices extends BaseAPIConfig {
-  BaseOptions options = new BaseOptions(
-    baseUrl: "http://animeworld.api.kaimly.com/",
-    connectTimeout: 20000,
-    receiveTimeout: 20000,
-  );
+  BaseOptions options =
+      new BaseOptions(baseUrl: "http://animeworld.api.kaimly.com/");
 
   @override
   Future<List> getAPI({Map<String, String> addOnHeader, String url}) async {
