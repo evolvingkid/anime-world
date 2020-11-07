@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hive/hive.dart';
 
+part 'avalibilityModels.g.dart';
+@HiveType(typeId: 2)
 class AnimeAvalibility {
+  @HiveField(0)
   final String channel;
+  @HiveField(1)
   final String category;
+  @HiveField(2)
   final String link;
 
   AnimeAvalibility({
@@ -11,7 +17,7 @@ class AnimeAvalibility {
     @required this.link,
   });
 
-  AnimeAvalibility convert(Map data) {
+  static AnimeAvalibility convert(Map data) {
     AnimeAvalibility _animeAvalibility = AnimeAvalibility(
       category: data['category'],
       channel: data['channel'],

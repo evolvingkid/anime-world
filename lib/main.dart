@@ -4,6 +4,7 @@ import 'core/services/dependencyInjection.dart';
 import 'core/themes/themes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   serviceLocators();
   runApp(MyApp());
 }

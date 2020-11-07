@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:animeworld/core/configs/BaseAPIConfig.dart';
 import 'package:animeworld/core/errors/httpExpections.dart';
 import 'package:dio/dio.dart';
@@ -18,10 +17,9 @@ class DioAPIServices extends BaseAPIConfig {
           await _dio.request(url, options: Options(method: "GET"));
 
       if (_response.statusCode < 200 && _response.statusCode > 226)
-      throw HttpException('', _response.statusCode);
+        throw HttpException('', _response.statusCode);
 
-      return json.decode(_response.data);
-      
+      return _response.data;
     } catch (e) {
       throw e;
     }

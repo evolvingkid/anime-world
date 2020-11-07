@@ -1,10 +1,19 @@
 import 'package:flutter/cupertino.dart';
+import 'package:hive/hive.dart';
 
+part 'streamingModels.g.dart';
+
+@HiveType(typeId: 2)
 class StreamingModels {
+  @HiveField(0)
   final String title;
+  @HiveField(1)
   final String url;
+  @HiveField(2)
   final String site;
+  @HiveField(3)
   final String tumbline;
+  @HiveField(4)
   StreamingModels({
     @required this.site,
     @required this.title,
@@ -12,7 +21,7 @@ class StreamingModels {
     @required this.url,
   });
 
-  StreamingModels covert(Map data) {
+ static StreamingModels covert(Map data) {
 
     StreamingModels _streamingData = StreamingModels(
       site: data['site'],
