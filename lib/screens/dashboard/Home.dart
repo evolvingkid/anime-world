@@ -78,7 +78,7 @@ class Home extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return NewsItemTile(
                           scWidth: scWidth,
-                          title: controller.animeNewsMini[index].title);
+                          data: controller.animeNewsData[index]);
                     },
                   );
                 }),
