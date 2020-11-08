@@ -34,11 +34,14 @@ class AnimeItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: ImageOrNetWork(
-                fit: BoxFit.cover,
-                url: data.coverImg,
-                height: 183,
-                width: width != null ? width - 120 : 127,
+              child: Material(
+                child: ImageOrNetWork(
+                  id: data.id,
+                  fit: BoxFit.cover,
+                  url: data.coverImg,
+                  height: 183,
+                  width: width != null ? width - 120 : 127,
+                ),
               ),
             ),
             Positioned(

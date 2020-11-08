@@ -19,6 +19,7 @@ class AnimeDetails extends StatelessWidget {
               child: Stack(
                 children: [
                   ImageOrNetWork(
+                    id: data.id,
                     url: data.coverImg,
                     fit: BoxFit.cover,
                     width: scWidth,

@@ -15,12 +15,13 @@ class ImageOrNetWork extends StatefulWidget {
     this.ext = '.png',
     this.url =
         "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx111500-YqqWk16db7FX.jpg",
+    this.id,
   });
 
   final BoxFit fit;
   final double width, height;
   final String ext;
-  final String url;
+  final String url, id;
 
   @override
   _ImageOrNetWorkState createState() => _ImageOrNetWorkState();
@@ -124,12 +125,16 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
       height: widget.height,
       width: widget.width,
       child: img != null
-          ? Image.file(
-              img,
-              height: widget.height,
-              width: widget.width,
-              fit: widget.fit,
-              alignment: Alignment.topCenter,
+          ? Material(
+              child: Hero(
+                  tag: widget.id,
+                  child: Image.file(
+                    img,
+                    height: widget.height,
+                    width: widget.width,
+                    fit: widget.fit,
+                    alignment: Alignment.topCenter,
+                  )),
             )
           : Image.asset(
               'assets/images/logo.png',
