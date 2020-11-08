@@ -74,7 +74,7 @@ class Home extends StatelessWidget {
                   return ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: controller.animeNewsData.length,
+                    itemCount: controller.animeNewsMini.length,
                     itemBuilder: (BuildContext context, int index) {
                       return NewsItemTile(
                           scWidth: scWidth,
