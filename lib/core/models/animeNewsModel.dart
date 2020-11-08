@@ -19,6 +19,10 @@ class AnimeNewsModel {
   final String link;
   @HiveField(6)
   final String guid;
+  @HiveField(7)
+  final String thumb;
+  @HiveField(8)
+  final String content;
 
   AnimeNewsModel({
     @required this.id,
@@ -28,6 +32,8 @@ class AnimeNewsModel {
     @required this.author,
     @required this.guid,
     @required this.pubDate,
+    @required this.content,
+    @required this.thumb,
   });
 
   static AnimeNewsModel convert(Map data) {
@@ -40,6 +46,8 @@ class AnimeNewsModel {
       author: data['author'],
       guid: data['guid'],
       pubDate: data['pubDate'],
+      thumb: data['thumb'],
+      content: data['content'],
     );
 
     return _animeNewsData;

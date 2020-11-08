@@ -10,7 +10,13 @@ class AnimeNews extends GetxController {
   List<AnimeNewsModel> _animeNewsData = List<AnimeNewsModel>().obs;
   AnimeNewsDatabase _animeNewsDatabase = AnimeNewsDatabase();
   List<AnimeNewsModel> get animeNewsData => [..._animeNewsData];
-  List<AnimeNewsModel> get animeNewsMini => _animeNewsData.getRange(0, 3).toList();
+  List<AnimeNewsModel> get animeNewsMini {
+    if (_animeNewsData.length < 3) {
+      return _animeNewsData;
+    }
+    return _animeNewsData.getRange(0, 3).toList();
+  }
+
   var isLoading = 1.obs;
 
   @override
@@ -25,6 +31,8 @@ class AnimeNews extends GetxController {
         .getAPI(url: 'api/news/list')
         .catchError((e) => debugPrint(e.toString()));
 
+    if (_fetchData.isNullOrBlank) return null;
+
     for (var _item in _fetchData) {
       AnimeNewsModel _animeNewsTemp = AnimeNewsModel.convert(_item);
 
@@ -37,7 +45,7 @@ class AnimeNews extends GetxController {
       }
     }
 
-    isLoading ++;
+    isLoading++;
   }
 
   Future<void> _acessFromDatabase() async {
@@ -52,6 +60,6 @@ class AnimeNews extends GetxController {
         _animeNewsData.add(_item);
       }
     }
-    isLoading ++;
+    isLoading++;
   }
 }

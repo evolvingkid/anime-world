@@ -43,8 +43,7 @@ class Home extends StatelessWidget {
             Text("Trending Anime",
                 style: Theme.of(context).textTheme.headline6),
             Obx(
-              
-              () => animesState.isloading.value 
+              () => animesState.isloading.value
                   ? const SizedBox()
                   : Container(
                       width: double.infinity,
@@ -93,17 +92,17 @@ class Home extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 193,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  WallpaperItem(),
-                  WallpaperItem(),
-                  WallpaperItem(),
-                  WallpaperItem(),
-                  WallpaperItem(),
-                  WallpaperItem(),
-                ],
-              ),
+              child: GetX<AnimeWallpapers>(builder: (_controller) {
+                return ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _controller.animeWallpaperData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return WallpaperItem(
+                      imageurl: _controller.animeWallpaperData[index].image,
+                    );
+                  },
+                );
+              }),
             ),
           ],
         ),

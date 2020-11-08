@@ -5,8 +5,10 @@ class WallpaperItem extends StatelessWidget {
   const WallpaperItem({
     Key key,
     this.width,
+    this.imageurl,
   }) : super(key: key);
   final double width;
+  final String imageurl;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class WallpaperItem extends StatelessWidget {
       margin: EdgeInsets.only(right: 10),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Image.asset(
-          'assets/images/test_img.jpg',
+        child: Image.network(
+          imageurl,
           fit: BoxFit.cover,
           height: 183,
           width: width != null ? width : 137,
