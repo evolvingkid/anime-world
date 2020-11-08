@@ -3,6 +3,7 @@ import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import './screens/animeworldscreens.dart';
+import 'core/models/animeWallpaperModels.dart';
 import 'core/models/animeWorldModel.dart';
 import 'core/services/dependencyInjection.dart';
 import 'core/themes/themes.dart';
@@ -17,9 +18,12 @@ void main() async {
   Hive.registerAdapter(StreamingModelsAdapter());
   Hive.registerAdapter(AnimeAvalibilityAdapter());
   Hive.registerAdapter(AnimeNewsModelAdapter());
+  Hive.registerAdapter(AnimeWallpaperModelsAdapter());
   Hive.init(appDocumnetDirectory.path);
   await Hive.openBox('animeData');
   await Hive.openBox('animeNews');
+  await Hive.openBox('animeWallpaper');
+
   runApp(MyApp());
 }
 
