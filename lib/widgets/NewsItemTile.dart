@@ -6,9 +6,11 @@ class NewsItemTile extends StatelessWidget {
   const NewsItemTile({
     Key key,
     @required this.scWidth,
+    this.title,
   }) : super(key: key);
 
   final double scWidth;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class NewsItemTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  "Hayku and rent a fireforce is making a big move ",
+                  title,
                   style: Theme.of(context).textTheme.headline6.merge(
                         TextStyle(color: Colors.white),
                       ),

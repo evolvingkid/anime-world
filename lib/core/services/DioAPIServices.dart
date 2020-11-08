@@ -10,6 +10,7 @@ class DioAPIServices extends BaseAPIConfig {
   Future<List> getAPI({Map<String, String> addOnHeader, String url}) async {
     try {
       Dio _dio = new Dio(options);
+
       Response _response =
           await _dio.request(url, options: Options(method: "GET"));
 

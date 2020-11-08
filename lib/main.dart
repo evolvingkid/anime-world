@@ -1,3 +1,4 @@
+import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import './screens/animeworldscreens.dart';
@@ -14,8 +15,10 @@ void main() async {
   Hive.registerAdapter(AnimeModelsAdapter());
   Hive.registerAdapter(StreamingModelsAdapter());
   Hive.registerAdapter(AnimeAvalibilityAdapter());
+  Hive.registerAdapter(AnimeNewsModelAdapter());
   Hive.init(appDocumnetDirectory.path);
   await Hive.openBox('animeData');
+  await Hive.openBox('animeNews');
   runApp(MyApp());
 }
 
