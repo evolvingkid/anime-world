@@ -10,6 +10,7 @@ class AnimeNews extends GetxController {
   List<AnimeNewsModel> _animeNewsData = List<AnimeNewsModel>().obs;
   AnimeNewsDatabase _animeNewsDatabase = AnimeNewsDatabase();
   List<AnimeNewsModel> get animeNewsData => [..._animeNewsData];
+  List<AnimeNewsModel> get animeNewsMini => _animeNewsData.getRange(0, 3).toList();
   var isLoading = 1.obs;
 
   @override
