@@ -17,7 +17,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
+      child:  Scaffold(
           bottomNavigationBar: Container(
             color: dark,
             child: TabBar(

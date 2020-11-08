@@ -10,7 +10,7 @@ class AnimeNews extends GetxController {
   List<AnimeNewsModel> _animeNewsData = List<AnimeNewsModel>().obs;
   AnimeNewsDatabase _animeNewsDatabase = AnimeNewsDatabase();
   List<AnimeNewsModel> get animeNewsData => [..._animeNewsData];
-  RxBool isLoading = true.obs;
+  var isLoading = 1.obs;
 
   @override
   void onInit() {
@@ -36,7 +36,7 @@ class AnimeNews extends GetxController {
       }
     }
 
-    isLoading = false.obs;
+    isLoading ++;
   }
 
   Future<void> _acessFromDatabase() async {
@@ -51,7 +51,6 @@ class AnimeNews extends GetxController {
         _animeNewsData.add(_item);
       }
     }
-
-    isLoading = false.obs;
+    isLoading ++;
   }
 }

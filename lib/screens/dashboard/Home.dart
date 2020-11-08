@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
 class Home extends StatelessWidget {
+  final AnimeState animesState = Get.find();
+
   @override
   Widget build(BuildContext context) {
     final scWidth = MediaQuery.of(context).size.width;
@@ -38,24 +40,27 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Trending Anime",
-              style: Theme.of(context).textTheme.headline6,
-            ),
-            Container(
-              width: double.infinity,
-              height: 193,
-              child: GetX<AnimeState>(builder: (_controller) {
-                // ignore: unrelated_type_equality_checks
-                return _controller.isloading == true ? const SizedBox() : ListView.builder(
-                  itemCount: _controller.ongoingAnime.length,
-                  padding: EdgeInsets.only(top: 10),
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (BuildContext context, int index) {
-                    return AnimeItem(data: _controller.ongoingAnime[index]);
-                  },
-                );
-              }),
+            Text("Trending Anime",
+                style: Theme.of(context).textTheme.headline6),
+            Obx(
+              
+              () => animesState.isloading.value 
+                  ? const SizedBox()
+                  : Container(
+                      width: double.infinity,
+                      height: 193,
+                      child: GetX<AnimeState>(builder: (_controller) {
+                        return ListView.builder(
+                          itemCount: _controller.ongoingAnime.length,
+                          padding: EdgeInsets.only(top: 10),
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (BuildContext context, int index) {
+                            return AnimeItem(
+                                data: _controller.ongoingAnime[index]);
+                          },
+                        );
+                      }),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
@@ -65,18 +70,19 @@ class Home extends StatelessWidget {
               ),
             ),
             GetX<AnimeNews>(
-              builder: (controller) {
-                // ignore: unrelated_type_equality_checks
-                return controller.isLoading == true ? const SizedBox() :  ListView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  itemBuilder: (BuildContext context, int index) {
-                    return NewsItemTile(scWidth: scWidth, title: controller.animeNewsData[index].title);
-                  },
-                );
-              }
-            ),
+                init: AnimeNews(),
+                builder: (controller) {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: controller.animeNewsData.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return NewsItemTile(
+                          scWidth: scWidth,
+                          title: controller.animeNewsData[index].title);
+                    },
+                  );
+                }),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),
               child: Text(
