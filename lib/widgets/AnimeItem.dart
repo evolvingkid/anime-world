@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:animeworld/core/models/animeModels.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
+import 'package:network_to_file_image/network_to_file_image.dart';
+import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 class AnimeItem extends StatelessWidget {
   const AnimeItem(
@@ -13,6 +18,16 @@ class AnimeItem extends StatelessWidget {
   final double width;
   final String imageUrl;
   final AnimeModels data;
+
+  File fileFromDocsDir(String filename) {
+    final appDocDir =
+        getApplicationDocumentsDirectory().then((value) => value.path);
+    appDocDir.then((value) {
+      String pathName = p.join((value), filename);
+      print(pathName);
+      return File(pathName);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +42,12 @@ class AnimeItem extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: Image.network(
-              data.coverImg,
+            child: Image(
+              image: NetworkToFileImage(
+                url: data.coverImg,
+                file: fileFromDocsDir(data.id + ".png"),
+                debug: true,
+              ),
               fit: BoxFit.cover,
               height: 183,
               width: width != null ? width - 120 : 127,
