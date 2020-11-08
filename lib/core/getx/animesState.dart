@@ -10,6 +10,7 @@ class AnimeState extends GetxController {
   DioAPIServices _dioAPIServices = locator<DioAPIServices>();
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
+  RxBool isloading = true.obs;
 
   // * for ui acessing data
   List<AnimeModels> get ongoingAnime =>
@@ -55,10 +56,15 @@ class AnimeState extends GetxController {
         _animeHiveDatabase.addData(_animeTempData);
       }
     }
+
+    isloading = false.obs;
   }
 
   Future<void> _acessFromDatabase() async {
     List<AnimeModels> _tempAnimeData = await _animeHiveDatabase.acessData();
+
+    if (_tempAnimeData.isNullOrBlank) return null;
+
     for (var _item in _tempAnimeData) {
       if (_animeData
           .where((element) => element.id == _item.id)
@@ -67,5 +73,6 @@ class AnimeState extends GetxController {
         _animeData.add(_item);
       }
     }
+    isloading = false.obs;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:animeworld/screens/dashboard/Anime.dart';
@@ -10,6 +11,7 @@ import '../../core/configs/variables.dart' as config;
 
 class DashboardScreen extends StatelessWidget {
   final animesState = Get.put(AnimeState());
+  final animeNews = Get.put(AnimeNews());
 
   @override
   Widget build(BuildContext context) {

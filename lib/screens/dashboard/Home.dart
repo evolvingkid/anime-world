@@ -1,6 +1,5 @@
+import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
-import 'package:animeworld/core/themes/textThemes/textTheme.dart';
-import 'package:animeworld/screens/dashboard/Wallpaper.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:animeworld/widgets/NewsItemTile.dart';
 import 'package:animeworld/widgets/WallpaperItem.dart';
@@ -47,7 +46,8 @@ class Home extends StatelessWidget {
               width: double.infinity,
               height: 193,
               child: GetX<AnimeState>(builder: (_controller) {
-                return ListView.builder(
+                // ignore: unrelated_type_equality_checks
+                return _controller.isloading == true ? const SizedBox() : ListView.builder(
                   itemCount: _controller.ongoingAnime.length,
                   padding: EdgeInsets.only(top: 10),
                   scrollDirection: Axis.horizontal,
@@ -64,14 +64,18 @@ class Home extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline6,
               ),
             ),
-            ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              children: [
-                NewsItemTile(scWidth: scWidth),
-                NewsItemTile(scWidth: scWidth),
-                NewsItemTile(scWidth: scWidth),
-              ],
+            GetX<AnimeNews>(
+              builder: (controller) {
+                // ignore: unrelated_type_equality_checks
+                return controller.isLoading == true ? const SizedBox() :  ListView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return NewsItemTile(scWidth: scWidth, title: controller.animeNewsData[index].title);
+                  },
+                );
+              }
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 15),

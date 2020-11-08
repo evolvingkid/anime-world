@@ -4,6 +4,7 @@ import 'avalibilityModels.dart';
 import 'streamingModels.dart';
 
 part 'animeModels.g.dart';
+
 @HiveType(typeId: 1)
 class AnimeModels {
   @HiveField(0)
