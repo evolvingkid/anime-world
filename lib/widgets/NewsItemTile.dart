@@ -1,3 +1,4 @@
+import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,11 +7,11 @@ class NewsItemTile extends StatelessWidget {
   const NewsItemTile({
     Key key,
     @required this.scWidth,
-    this.title,
+    @required this.data,
   }) : super(key: key);
 
   final double scWidth;
-  final String title;
+  final AnimeNewsModel data;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class NewsItemTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  title,
+                  data.title,
                   style: Theme.of(context).textTheme.headline6.merge(
                         TextStyle(color: Colors.white),
                       ),
@@ -51,7 +52,7 @@ class NewsItemTile extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  "rent a fireforce is making a big move  fireforce is making a big move fireforce is making a big move",
+                  data.description,
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1

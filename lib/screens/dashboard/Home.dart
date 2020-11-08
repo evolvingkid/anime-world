@@ -43,8 +43,7 @@ class Home extends StatelessWidget {
             Text("Trending Anime",
                 style: Theme.of(context).textTheme.headline6),
             Obx(
-              
-              () => animesState.isloading.value 
+              () => animesState.isloading.value
                   ? const SizedBox()
                   : Container(
                       width: double.infinity,
@@ -79,7 +78,7 @@ class Home extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return NewsItemTile(
                           scWidth: scWidth,
-                          title: controller.animeNewsData[index].title);
+                          data: controller.animeNewsData[index]);
                     },
                   );
                 }),
