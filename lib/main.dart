@@ -1,4 +1,5 @@
 import 'package:animeworld/core/models/animeNewsModel.dart';
+import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import './screens/animeworldscreens.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'Anime World',
       theme: themes(),
       darkTheme: darkThemes(),
-      routes: {},
+      routes: {'/anime': (context) => AnimeDetails()},
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: DashboardScreen(),

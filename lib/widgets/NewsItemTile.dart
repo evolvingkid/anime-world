@@ -1,3 +1,4 @@
+import 'package:animeworld/Custom/ImageOrNetwork.dart';
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +31,8 @@ class NewsItemTile extends StatelessWidget {
               topLeft: Radius.circular(10),
               bottomLeft: Radius.circular(10),
             ),
-            child: Image.asset(
-              'assets/images/test_img.jpg',
+            child: ImageOrNetWork(
+              url: data.thumb,
               height: 80,
               width: 100,
               fit: BoxFit.cover,

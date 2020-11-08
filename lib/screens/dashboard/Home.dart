@@ -98,7 +98,7 @@ class Home extends StatelessWidget {
                   itemCount: _controller.animeWallpaperData.length,
                   itemBuilder: (BuildContext context, int index) {
                     return WallpaperItem(
-                      imageurl: _controller.animeWallpaperData[index].image,
+                      data: _controller.animeWallpaperData[index],
                     );
                   },
                 );
