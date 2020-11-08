@@ -1,3 +1,4 @@
+import 'package:animeworld/core/models/animeWallpaperModels.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
 
@@ -5,10 +6,12 @@ class WallpaperItem extends StatelessWidget {
   const WallpaperItem({
     Key key,
     this.width,
-    this.imageurl,
+    this.data,
+    this.margin = const EdgeInsets.only(right: 10),
   }) : super(key: key);
   final double width;
-  final String imageurl;
+  final AnimeWallpaperModels data;
+  final EdgeInsets margin;
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +20,15 @@ class WallpaperItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       height: 163,
-      width: width != null ? width : 137,
-      margin: EdgeInsets.only(right: 10),
+      width: data.isLandScape ? 280 : 127,
+      margin: margin,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
         child: Image.network(
-          imageurl,
+          data.image,
           fit: BoxFit.cover,
           height: 183,
-          width: width != null ? width : 137,
+          width: data.isLandScape ? 280 : 127,
         ),
       ),
     );
