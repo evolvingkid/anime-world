@@ -7,6 +7,12 @@ ThemeData themes() {
     scaffoldBackgroundColor: Color(0xffF6F9FF),
     appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
     accentColor: Color(0xff191C24),
+    buttonTheme: ButtonThemeData(
+      buttonColor: secondary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
     textTheme: textTheme(),
     accentTextTheme: accentTextTheme(),
   );
@@ -15,6 +21,12 @@ ThemeData themes() {
 ThemeData darkThemes() {
   return ThemeData(
     primarySwatch: Colors.blueGrey,
+    buttonTheme: ButtonThemeData(
+      buttonColor: secondaryDark,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+    ),
     appBarTheme: AppBarTheme(color: bgDark, elevation: 0),
     textTheme: darkTextTheme(),
     scaffoldBackgroundColor: bgDark,

@@ -129,6 +129,7 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
               height: widget.height,
               width: widget.width,
               fit: widget.fit,
+              alignment: Alignment.topCenter,
             )
           : Image.asset(
               'assets/images/logo.png',
