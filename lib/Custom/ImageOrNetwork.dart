@@ -93,8 +93,8 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
         fileName: imgPath,
         fileExtension: widget.ext,
         onReceiveProgress: (cur, tot) {
-          print(cur);
-          print(tot);
+        //  print(cur);
+         // print(tot);
         },
       );
       if (!mounted) return;

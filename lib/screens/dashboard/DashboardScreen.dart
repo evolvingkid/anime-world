@@ -1,4 +1,6 @@
 import 'package:animeworld/core/getx/animeWorldStates.dart';
+import 'package:animeworld/core/services/dependencyInjection.dart';
+import 'package:animeworld/core/services/firebaseServices.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:animeworld/screens/dashboard/Anime.dart';
 import 'package:animeworld/screens/dashboard/Home.dart';
@@ -8,16 +10,41 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
+// ignore: must_be_immutable
 class DashboardScreen extends StatelessWidget {
   final animesState = Get.put(AnimeState());
   final animeNews = Get.put(AnimeNews());
-   final animeWallpapers = Get.put(AnimeWallpapers());
+  final animeWallpapers = Get.put(AnimeWallpapers());
+  FirebaseNotificationservices _firebaseMessaging =
+      locator<FirebaseNotificationservices>();
+
+  Future<dynamic> onMessage(Map<String, dynamic> message) async {
+    debugPrint(message.toString());
+  }
+
+  static Future<dynamic> onBackgroundMessage(
+      Map<String, dynamic> message) async {
+    debugPrint(message.toString());
+  }
+
+  Future<dynamic> onLaunch(Map<String, dynamic> message) async {
+    debugPrint(message.toString());
+  }
+
+  Future<dynamic> onResume(Map<String, dynamic> message) async {
+    debugPrint(message.toString());
+  }
 
   @override
   Widget build(BuildContext context) {
+    _firebaseMessaging.onMessageSet(
+        onMessage: onMessage,
+        onBackgroundMessage: onBackgroundMessage,
+        onLaunch: onLaunch,
+        onResume: onResume);
     return DefaultTabController(
       length: 4,
-      child:  Scaffold(
+      child: Scaffold(
           bottomNavigationBar: Container(
             color: dark,
             child: TabBar(
