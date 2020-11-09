@@ -17,7 +17,7 @@ class FirebaseNotificationservices {
     );
   }
 
-  void messageSubscription() {
+  void messageSubscription() { 
     _firebaseMessaging.subscribeToTopic('news');
   }
 }

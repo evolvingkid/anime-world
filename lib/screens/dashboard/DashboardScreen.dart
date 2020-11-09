@@ -19,14 +19,17 @@ class DashboardScreen extends StatelessWidget {
       locator<FirebaseNotificationservices>();
 
   Future<dynamic> onMessage(Map<String, dynamic> message) async {
+    print('on Message');
     debugPrint(message.toString());
   }
 
   Future<dynamic> onLaunch(Map<String, dynamic> message) async {
+    print('on launch');
     debugPrint(message.toString());
   }
 
   Future<dynamic> onResume(Map<String, dynamic> message) async {
+    print('on onResume');
     debugPrint(message.toString());
   }
 
