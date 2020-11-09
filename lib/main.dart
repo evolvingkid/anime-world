@@ -1,6 +1,7 @@
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
 import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
+import 'package:animeworld/screens/dashboard/NewsDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import './screens/animeworldscreens.dart';
@@ -32,7 +33,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   FirebaseNotificationservices _firebaseMessaging =
       locator<FirebaseNotificationservices>();
-      
+
   @override
   Widget build(BuildContext context) {
     _firebaseMessaging.messageSubscription();
@@ -40,7 +41,10 @@ class MyApp extends StatelessWidget {
       title: 'Anime World',
       theme: themes(),
       darkTheme: darkThemes(),
-      routes: {'/anime': (context) => AnimeDetails()},
+      routes: {
+        '/anime': (context) => AnimeDetails(),
+        '/news': (context) => NewsDetails()
+      },
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
       home: DashboardScreen(),
