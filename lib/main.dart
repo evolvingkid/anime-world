@@ -1,4 +1,5 @@
 import 'package:animeworld/core/models/animeNewsModel.dart';
+import 'package:animeworld/core/services/firebaseServices.dart';
 import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -27,9 +28,14 @@ void main() async {
   runApp(MyApp());
 }
 
+// ignore: must_be_immutable
 class MyApp extends StatelessWidget {
+  FirebaseNotificationservices _firebaseMessaging =
+      locator<FirebaseNotificationservices>();
+      
   @override
   Widget build(BuildContext context) {
+    _firebaseMessaging.messageSubscription();
     return MaterialApp(
       title: 'Anime World',
       theme: themes(),

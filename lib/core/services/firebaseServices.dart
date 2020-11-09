@@ -16,4 +16,8 @@ class FirebaseNotificationservices {
       onResume: onResume,
     );
   }
+
+  void messageSubscription() {
+    _firebaseMessaging.subscribeToTopic('news');
+  }
 }

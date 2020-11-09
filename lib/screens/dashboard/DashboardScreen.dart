@@ -22,11 +22,6 @@ class DashboardScreen extends StatelessWidget {
     debugPrint(message.toString());
   }
 
-  static Future<dynamic> onBackgroundMessage(
-      Map<String, dynamic> message) async {
-    debugPrint(message.toString());
-  }
-
   Future<dynamic> onLaunch(Map<String, dynamic> message) async {
     debugPrint(message.toString());
   }
@@ -38,10 +33,10 @@ class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _firebaseMessaging.onMessageSet(
-        onMessage: onMessage,
-        onBackgroundMessage: onBackgroundMessage,
-        onLaunch: onLaunch,
-        onResume: onResume);
+      onMessage: onMessage,
+      onLaunch: onLaunch,
+      onResume: onResume,
+    );
     return DefaultTabController(
       length: 4,
       child: Scaffold(
