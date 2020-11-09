@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "413122355676",
+    "firebase_url": "https://anime-world-541a8.firebaseio.com",
+    "project_id": "anime-world-541a8",
+    "storage_bucket": "anime-world-541a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:413122355676:android:d987bf57c3e66f4157af19",
+        "android_client_info": {
+          "package_name": "com.evolvingkid.animeworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "413122355676-k89u9d7pbufa7mq7dd0pguksb9c9e5ji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo6zyHNRT_UX4xpVfQX2Xx-mrgQ61vZjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "413122355676-k89u9d7pbufa7mq7dd0pguksb9c9e5ji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
