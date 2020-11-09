@@ -32,6 +32,7 @@ class NewsItemTile extends StatelessWidget {
               bottomLeft: Radius.circular(10),
             ),
             child: ImageOrNetWork(
+              id: data.id,
               url: data.thumb,
               height: 80,
               width: 100,

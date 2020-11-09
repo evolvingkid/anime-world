@@ -9,6 +9,19 @@ class AnimeDetails extends StatelessWidget {
     final scWidth = MediaQuery.of(context).size.width;
     final AnimeModels data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      floatingActionButton: Container(
+        margin: EdgeInsets.only(top: 15),
+        decoration: BoxDecoration(
+          color: Colors.black38,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        padding: EdgeInsets.all(5),
+        child: Icon(
+          Icons.keyboard_arrow_left_rounded,
+          color: Colors.white,
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

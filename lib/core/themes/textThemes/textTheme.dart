@@ -41,6 +41,7 @@ TextTheme textTheme() => TextTheme(
       bodyText1: TextStyle(fontFamily: 'QuattrocentoSans'),
       bodyText2: TextStyle(fontFamily: 'QuattrocentoSans'),
       caption: TextStyle(fontFamily: 'QuattrocentoSans', fontSize: 10),
+      subtitle2: TextStyle(fontFamily: 'QuattrocentoSans'),
     );
 
 TextTheme darkTextTheme() => TextTheme(
