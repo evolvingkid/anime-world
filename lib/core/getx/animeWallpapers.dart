@@ -11,8 +11,23 @@ class AnimeWallpapers extends GetxController {
   List<AnimeWallpaperModels> _animeWallpaperData =
       List<AnimeWallpaperModels>().obs;
   AnimeWallpaperDatabase _animeWallpaperDatabase = AnimeWallpaperDatabase();
+  RxString _searchString = ''.obs;
+
   List<AnimeWallpaperModels> get animeWallpaperData => [..._animeWallpaperData];
   RxBool isLoading = true.obs;
+
+  List<AnimeWallpaperModels> get filterAnimeWallpaper {
+    List<AnimeWallpaperModels> _tempAnimeData = [..._animeWallpaperData];
+
+    if (_searchString.value.isNotEmpty) {
+      _tempAnimeData = _tempAnimeData
+          .where((element) =>
+              element.title.toLowerCase().contains(_searchString.value))
+          .toList();
+    }
+
+    return _tempAnimeData;
+  }
 
   @override
   void onInit() {
@@ -77,6 +92,13 @@ class AnimeWallpapers extends GetxController {
       }
     }
 
-     isLoading.value = false;
+    isLoading.value = false;
+  }
+
+  void searchTitle({String title}) {
+    if (!title.isNullOrBlank) {
+      _searchString.value = title;
+      fetchDataFromServers(title: title);
+    }
   }
 }

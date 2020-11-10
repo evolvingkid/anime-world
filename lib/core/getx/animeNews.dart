@@ -10,12 +10,28 @@ class AnimeNews extends GetxController {
   DioAPIServices _dioAPIServices = locator<DioAPIServices>();
   List<AnimeNewsModel> _animeNewsData = List<AnimeNewsModel>().obs;
   AnimeNewsDatabase _animeNewsDatabase = AnimeNewsDatabase();
+  RxString _searchTitle = ''.obs;
+
   List<AnimeNewsModel> get animeNewsData => [..._animeNewsData];
   List<AnimeNewsModel> get animeNewsMini {
     if (_animeNewsData.length < 3) {
       return _animeNewsData;
     }
     return _animeNewsData.getRange(0, 3).toList();
+  }
+
+  List<AnimeNewsModel> get filterAnimeNews {
+    List<AnimeNewsModel> _tempAnimeData = [..._animeNewsData];
+
+    if (_searchTitle.value.isNotEmpty) {
+      _tempAnimeData = _tempAnimeData
+          .where((element) => element.title
+              .toLowerCase()
+              .contains(_searchTitle.value.toLowerCase()))
+          .toList();
+    }
+
+    return _tempAnimeData;
   }
 
   RxBool isLoading = true.obs;
@@ -79,5 +95,13 @@ class AnimeNews extends GetxController {
       }
     }
     isLoading.value = false;
+  }
+
+  void searchTitle({String title}) {
+    if (!title.isNullOrBlank) {
+      _searchTitle.value = title;
+
+      fetchdataFromServers(title: title);
+    }
   }
 }

@@ -11,7 +11,8 @@ class AnimeState extends GetxController {
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
   var isloading = true.obs;
-  String _filterTags;
+  RxString _filterTags = ''.obs;
+  RxString _searchList = ''.obs;
 
   // * for ui acessing data
   List<AnimeModels> get ongoingAnime =>
@@ -27,7 +28,16 @@ class AnimeState extends GetxController {
     List<AnimeModels> _tempAnimeData = [..._animeData];
     if (!_filterTags.isNullOrBlank) {
       _tempAnimeData = _tempAnimeData
-          .where((element) => element.itemType.toUpperCase() == _filterTags)
+          .where(
+              (element) => element.itemType.toUpperCase() == _filterTags.value)
+          .toList();
+    }
+
+    if (_searchList.value.isNotEmpty) {
+      _tempAnimeData = _tempAnimeData
+          .where((element) => element.title
+              .toLowerCase()
+              .contains(_searchList.value.toLowerCase()))
           .toList();
     }
 
@@ -100,7 +110,14 @@ class AnimeState extends GetxController {
     isloading.value = false;
   }
 
-  void filterDataWithTags(String tags) {
-    _filterTags = tags;
+  void filterData({String tags, String searchTitle}) {
+    if (!tags.isNullOrBlank) {
+      _filterTags.value = tags;
+    }
+
+    if (!searchTitle.isNullOrBlank) {
+      _searchList.value = searchTitle;
+      fetchDataFromServers(title: searchTitle);
+    }
   }
 }
