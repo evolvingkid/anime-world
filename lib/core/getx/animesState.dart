@@ -11,6 +11,7 @@ class AnimeState extends GetxController {
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
   var isloading = true.obs;
+  String _filterTags;
 
   // * for ui acessing data
   List<AnimeModels> get ongoingAnime =>
@@ -21,6 +22,17 @@ class AnimeState extends GetxController {
       _animeData.where((e) => e.itemType.toUpperCase() == 'MOVIES').toList();
   List<AnimeModels> get ovaAnime =>
       _animeData.where((e) => e.itemType.toUpperCase() == 'OVA').toList();
+
+  List<AnimeModels> get animeFilter {
+    List<AnimeModels> _tempAnimeData = [..._animeData];
+    if (!_filterTags.isNullOrBlank) {
+      _tempAnimeData = _tempAnimeData
+          .where((element) => element.itemType.toUpperCase() == _filterTags)
+          .toList();
+    }
+
+    return [..._tempAnimeData];
+  }
 
   @override
   void onInit() {
@@ -86,5 +98,9 @@ class AnimeState extends GetxController {
       }
     }
     isloading.value = false;
+  }
+
+  void filterDataWithTags(String tags) {
+    _filterTags = tags;
   }
 }
