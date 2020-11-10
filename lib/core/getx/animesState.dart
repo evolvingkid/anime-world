@@ -32,10 +32,23 @@ class AnimeState extends GetxController {
     super.onInit();
   }
 
-  Future<void> fetchDataFromServers({String itemType, String title}) async {
+  Future<void> fetchDataFromServers({
+    String itemType,
+    String title,
+    String skip,
+    String limit,
+  }) async {
     String _url = 'api/anime_movies/list';
 
-    _url = animeQueryMaker(url: _url, title: title, itemType: itemType);
+    _url = animeQueryMaker(
+      url: _url,
+      title: title,
+      itemType: itemType,
+      skip: skip,
+      limit: limit,
+    );
+
+    isloading.value = true;
 
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)

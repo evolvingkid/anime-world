@@ -1,4 +1,5 @@
 import 'package:animeworld/core/database/animeNewsHiveDatabase.dart';
+import 'package:animeworld/core/functions/animeQueryMaker.dart';
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/services/animeworldservices.dart';
 import 'package:animeworld/core/services/dependencyInjection.dart';
@@ -17,7 +18,7 @@ class AnimeNews extends GetxController {
     return _animeNewsData.getRange(0, 3).toList();
   }
 
-  var isLoading = 1.obs;
+  RxBool isLoading = true.obs;
 
   @override
   void onInit() {
@@ -26,9 +27,26 @@ class AnimeNews extends GetxController {
     super.onInit();
   }
 
-  Future<void> fetchdataFromServers() async {
+  Future<void> fetchdataFromServers({
+    String itemType,
+    String title,
+    String skip,
+    String limit,
+  }) async {
+    String _url = 'api/anime_movies/list';
+
+    _url = animeQueryMaker(
+      url: _url,
+      title: title,
+      itemType: itemType,
+      skip: skip,
+      limit: limit,
+    );
+
+    isLoading.value = true;
+
     final _fetchData = await _dioAPIServices
-        .getAPI(url: 'api/news/list')
+        .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
 
     if (_fetchData.isNullOrBlank) return null;
@@ -45,7 +63,7 @@ class AnimeNews extends GetxController {
       }
     }
 
-    isLoading++;
+    isLoading.value = false;
   }
 
   Future<void> _acessFromDatabase() async {
@@ -60,6 +78,6 @@ class AnimeNews extends GetxController {
         _animeNewsData.add(_item);
       }
     }
-    isLoading++;
+    isLoading.value = false;
   }
 }

@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:animeworld/core/database/animeWallpaperDatabase.dart';
+import 'package:animeworld/core/functions/animeQueryMaker.dart';
 import 'package:animeworld/core/models/animeWallpaperModels.dart';
 import 'package:animeworld/core/services/animeworldservices.dart';
 import 'package:animeworld/core/services/dependencyInjection.dart';
@@ -13,7 +12,8 @@ class AnimeWallpapers extends GetxController {
       List<AnimeWallpaperModels>().obs;
   AnimeWallpaperDatabase _animeWallpaperDatabase = AnimeWallpaperDatabase();
   List<AnimeWallpaperModels> get animeWallpaperData => [..._animeWallpaperData];
-  
+  RxBool isLoading = true.obs;
+
   @override
   void onInit() {
     _acessFromDatabase();
@@ -21,12 +21,31 @@ class AnimeWallpapers extends GetxController {
     super.onInit();
   }
 
-  Future<void> fetchDataFromServers() async {
+  Future<void> fetchDataFromServers({
+    String itemType,
+    String title,
+    String skip,
+    String limit,
+  }) async {
+    String _url = 'api/anime_movies/list';
+
+    _url = animeQueryMaker(
+      url: _url,
+      title: title,
+      itemType: itemType,
+      skip: skip,
+      limit: limit,
+    );
+
+    isLoading.value = true;
+
     final _fetchData = await _dioAPIServices
-        .getAPI(url: 'api/wallpaper/list')
+        .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
 
     if (_fetchData.isNullOrBlank) return null;
+
+    isLoading.value = false;
 
     for (var _item in _fetchData) {
       List<AnimeWallpaperModels> _animeWallpaperListTemp =
@@ -40,6 +59,8 @@ class AnimeWallpapers extends GetxController {
         _animeWallpaperDatabase.addData(_animeWallpaperListTemp);
       }
     }
+
+    isLoading.value = false;
   }
 
   Future<void> _acessFromDatabase() async {
@@ -55,5 +76,7 @@ class AnimeWallpapers extends GetxController {
         _animeWallpaperData.add(_item);
       }
     }
+
+     isLoading.value = false;
   }
 }
