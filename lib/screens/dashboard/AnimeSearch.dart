@@ -1,5 +1,4 @@
 import 'package:animeworld/core/getx/animesState.dart';
-import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,18 +25,18 @@ class AnimeSearch extends StatelessWidget {
           ),
         ),
       ),
-      body: GetX<AnimeState>(
-        builder: (_controller) {
-          return ListView.builder(
-            itemBuilder: (ctx, index) {
-              if (_controller.animeFilter.length > 0) {
-                return AnimeItem(data: _controller.animeFilter[index]);
-              } else {
-                return Container();
-              }
-            },
-          );
-        },
+      body: Container(
+        child: GetX<AnimeState>(
+          builder: (_controller) {
+            return ListView.builder(
+              itemCount: _controller.animeFilter.length,
+              itemBuilder: (ctx, index) {
+              return _controller.ongoingAnime.length > 0
+                  ? AnimeItem(data: _controller.animeFilter[index])
+                  : Container(child: Text('No Data Found'),);
+            });
+          },
+        ),
       ),
     );
   }

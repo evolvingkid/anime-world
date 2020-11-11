@@ -11,8 +11,7 @@ class AnimeState extends GetxController {
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
   var isloading = true.obs;
-  RxString _filterTags = ''.obs;
-  RxString _searchList = ''.obs;
+  RxList<AnimeModels> _animeFilterData = List<AnimeModels>().obs;
 
   // * for ui acessing data
   List<AnimeModels> get ongoingAnime =>
@@ -24,25 +23,7 @@ class AnimeState extends GetxController {
   List<AnimeModels> get ovaAnime =>
       _animeData.where((e) => e.itemType.toUpperCase() == 'OVA').toList();
 
-  List<AnimeModels> get animeFilter {
-    List<AnimeModels> _tempAnimeData = [..._animeData];
-    if (!_filterTags.isNullOrBlank) {
-      _tempAnimeData = _tempAnimeData
-          .where(
-              (element) => element.itemType.toUpperCase() == _filterTags.value)
-          .toList();
-    }
-
-    if (_searchList.value.isNotEmpty) {
-      _tempAnimeData = _tempAnimeData
-          .where((element) => element.title
-              .toLowerCase()
-              .contains(_searchList.value.toLowerCase()))
-          .toList();
-    }
-
-    return [..._tempAnimeData];
-  }
+  List<AnimeModels> get animeFilter => [..._animeFilterData];
 
   @override
   void onInit() {
@@ -72,6 +53,7 @@ class AnimeState extends GetxController {
 
     isloading.value = true;
 
+    print(_url);
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
@@ -110,13 +92,17 @@ class AnimeState extends GetxController {
     isloading.value = false;
   }
 
-  void filterData({String tags, String searchTitle}) {
-    if (!tags.isNullOrBlank) {
-      _filterTags.value = tags;
-    }
-
+  void filterData({String searchTitle}) {
     if (!searchTitle.isNullOrBlank) {
-      _searchList.value = searchTitle;
+      print('_animeData.first.title');
+
+      _animeFilterData.value = _animeData
+          .where((_element) =>
+              _element.title.toLowerCase().contains(searchTitle.toLowerCase()))
+          .toList();
+
+      print(_animeFilterData);
+
       fetchDataFromServers(title: searchTitle);
     }
   }
