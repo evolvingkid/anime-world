@@ -10,7 +10,7 @@ class AllAnimes extends StatelessWidget {
         title: TextField(
           textInputAction: TextInputAction.search,
           decoration: InputDecoration(
-            hintText: "Search",
+            hintText: "Search Animes",
             suffixIcon: IconButton(
               icon: Icon(Icons.search_rounded),
               onPressed: () {},
