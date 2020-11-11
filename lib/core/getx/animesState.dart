@@ -11,7 +11,7 @@ class AnimeState extends GetxController {
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
   var isloading = true.obs;
-  RxList<AnimeModels> _animeFilterData = List<AnimeModels>().obs;
+  RxString _searchString = ''.obs;
 
   // * for ui acessing data
   List<AnimeModels> get ongoingAnime =>
@@ -23,7 +23,19 @@ class AnimeState extends GetxController {
   List<AnimeModels> get ovaAnime =>
       _animeData.where((e) => e.itemType.toUpperCase() == 'OVA').toList();
 
-  List<AnimeModels> get animeFilter => [..._animeFilterData];
+  List<AnimeModels> get animeFilter {
+    String searchString = _searchString.value;
+    List<AnimeModels> _animeFilterData = [..._animeData];
+
+    if (searchString.isNotEmpty) {
+      _animeFilterData = _animeFilterData
+          .where(
+              (e) => e.title.toLowerCase().contains(searchString.toLowerCase()))
+          .toList();
+    }
+
+    return _animeFilterData;
+  }
 
   @override
   void onInit() {
@@ -53,7 +65,6 @@ class AnimeState extends GetxController {
 
     isloading.value = true;
 
-    print(_url);
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
@@ -66,7 +77,7 @@ class AnimeState extends GetxController {
     for (var _item in _fetchdata) {
       _animeTempData = AnimeModels.convert(_item);
       if (_animeData
-          .where((element) => element.id == _animeTempData.id)
+          .where((element) => element.title == _animeTempData.title)
           .toList()
           .isEmpty) {
         _animeData.add(_animeTempData);
@@ -94,15 +105,8 @@ class AnimeState extends GetxController {
 
   void filterData({String searchTitle}) {
     if (!searchTitle.isNullOrBlank) {
-      print('_animeData.first.title');
-
-      _animeFilterData.value = _animeData
-          .where((_element) =>
-              _element.title.toLowerCase().contains(searchTitle.toLowerCase()))
-          .toList();
-
-      print(_animeFilterData);
-
+      print('object');
+      _searchString.value = searchTitle;
       fetchDataFromServers(title: searchTitle);
     }
   }

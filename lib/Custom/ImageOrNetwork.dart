@@ -93,8 +93,8 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
         fileName: imgPath,
         fileExtension: widget.ext,
         onReceiveProgress: (cur, tot) {
-        //  print(cur);
-         // print(tot);
+          //  print(cur);
+          // print(tot);
         },
       );
       if (!mounted) return;
@@ -117,6 +117,12 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant ImageOrNetWork oldWidget) {
+     getImage();
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
