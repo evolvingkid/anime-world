@@ -82,7 +82,7 @@ class NewsDetails extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(
                   top: 10, left: 10, right: 10, bottom: 10),
-              child: Text(data.content),
+              child: Text("${data.content}"),
             ),
           ],
         ),

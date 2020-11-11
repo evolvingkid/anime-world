@@ -16,21 +16,26 @@ class WallpaperItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      height: 163,
-      width: data.isLandScape ? 280 : 127,
-      margin: margin,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: ImageOrNetWork(
-          id: data.id,
-          url: data.image,
-          fit: BoxFit.cover,
-          height: 183,
-          width: data.isLandScape ? 280 : 127,
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/view_wallpaper', arguments: data);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        height: 163,
+        width: data.isLandScape ? 280 : 127,
+        margin: margin,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: ImageOrNetWork(
+            id: data.id,
+            url: data.image,
+            fit: BoxFit.cover,
+            height: 183,
+            width: data.isLandScape ? 280 : 127,
+          ),
         ),
       ),
     );

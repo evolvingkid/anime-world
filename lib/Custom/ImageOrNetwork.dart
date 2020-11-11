@@ -7,6 +7,12 @@ import 'package:path_provider/path_provider.dart';
 import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart' as crypto;
 
+class GetImageOrNetwork extends _ImageOrNetWorkState {
+  String pathFromUrl({String url, String ext = ".png"}) {
+    return await getPath(url: url, ext: ext);
+  }
+}
+
 class ImageOrNetWork extends StatefulWidget {
   ImageOrNetWork({
     this.fit,
@@ -28,12 +34,18 @@ class ImageOrNetWork extends StatefulWidget {
 }
 
 class _ImageOrNetWorkState extends State<ImageOrNetWork> {
-  generateFileName(String data) {
+  generateFileName(String data, String ext) {
     return hex.encode(crypto.md5.convert(Utf8Encoder().convert(data)).bytes) +
-        widget.ext;
+        ext;
   }
 
   File img;
+
+  Future<String> getPath({String url, String ext}) async {
+    final appDocDir = await getApplicationDocumentsDirectory();
+    String pathName = p.join(appDocDir.path, generateFileName(url, ext));
+    return pathName;
+  }
 
   Future<File> fileFromDocsDir(String filename) async {
     final appDocDir = await getApplicationDocumentsDirectory();
@@ -78,7 +90,7 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
   }
 
   getImage() async {
-    String imgPath = generateFileName(widget.url);
+    String imgPath = generateFileName(widget.url, widget.ext);
     File imageFile = await fileFromDocsDir(imgPath + widget.ext);
     if (await imageFile.exists()) {
       print(imageFile.path + "  Exist");
@@ -93,8 +105,8 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
         fileName: imgPath,
         fileExtension: widget.ext,
         onReceiveProgress: (cur, tot) {
-        //  print(cur);
-         // print(tot);
+          //  print(cur);
+          // print(tot);
         },
       );
       if (!mounted) return;
@@ -125,16 +137,12 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
       height: widget.height,
       width: widget.width,
       child: img != null
-          ? Material(
-              child: Hero(
-                  tag: widget.id,
-                  child: Image.file(
-                    img,
-                    height: widget.height,
-                    width: widget.width,
-                    fit: widget.fit,
-                    alignment: Alignment.topCenter,
-                  )),
+          ? Image.file(
+              img,
+              height: widget.height,
+              width: widget.width,
+              fit: widget.fit,
+              alignment: Alignment.topCenter,
             )
           : Image.asset(
               'assets/images/logo.png',
