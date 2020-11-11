@@ -26,29 +26,16 @@ class AnimeSearch extends StatelessWidget {
         ),
       ),
       body: Container(
-        child: GetX<AnimeState>(
-          builder: (_controller) {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 0,
-                mainAxisSpacing: 10,
-                childAspectRatio: 0.8,
-              ),
-              itemCount: _controller.animeFilter.length,
+        child: Obx(
+          () => ListView.builder(
+              itemCount: animeState.animeFilter.length,
               itemBuilder: (ctx, index) {
-                print("index");
-                return _controller.ongoingAnime.length > 0
-                    ? Container(
-                        child: AnimeItem(data: _controller.animeFilter[index]),
-                        height: 183,
-                      )
+                return animeState.animeFilter.length > 0
+                    ? AnimeItem(data: animeState.animeFilter[index])
                     : Container(
                         child: Text('No Data Found'),
                       );
-              },
-            );
-          },
+              }),
         ),
       ),
     );

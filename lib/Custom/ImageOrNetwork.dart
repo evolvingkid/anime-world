@@ -132,6 +132,12 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
   }
 
   @override
+  void didUpdateWidget(covariant ImageOrNetWork oldWidget) {
+     getImage();
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: widget.height,
