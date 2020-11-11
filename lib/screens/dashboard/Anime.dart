@@ -15,7 +15,7 @@ class Anime extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.search_rounded),
             onPressed: () {
-              Navigator.pushNamed(context, '/allanime');
+              Navigator.pushNamed(context, '/anime_search');
             },
           )
         ],

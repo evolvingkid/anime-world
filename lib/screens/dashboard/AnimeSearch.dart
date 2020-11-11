@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
-class AllAnimes extends StatelessWidget {
+class AnimeSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

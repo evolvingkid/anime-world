@@ -1,6 +1,6 @@
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
-import 'package:animeworld/screens/dashboard/AllAnimes.dart';
+import 'package:animeworld/screens/dashboard/AnimeSearch.dart';
 import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
 import 'package:animeworld/screens/dashboard/NewsDetails.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/anime': (context) => AnimeDetails(),
         '/news': (context) => NewsDetails(),
-        '/allanime': (context) => AllAnimes()
+        '/anime_search': (context) => AnimeSearch()
       },
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
