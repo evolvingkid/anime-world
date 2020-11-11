@@ -9,7 +9,17 @@ import 'package:crypto/crypto.dart' as crypto;
 
 class GetImageOrNetwork extends _ImageOrNetWorkState {
   String pathFromUrl({String url, String ext = ".png"}) {
-    return await getPath(url: url, ext: ext);
+    return generateFileName(url, ext);
+  }
+
+  Future<File> moveImageTo(
+      {String url, String toPath, String ext = ".png"}) async {
+    String filename = generateFileName(url, ext);
+    final appDocDir = await getApplicationDocumentsDirectory();
+    String filePathName = p.join(appDocDir.path, filename);
+    File image = File(filePathName);
+    image.copy(p.join(toPath, filename));
+    return image;
   }
 }
 
@@ -133,7 +143,7 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
 
   @override
   void didUpdateWidget(covariant ImageOrNetWork oldWidget) {
-     getImage();
+    getImage();
     super.didUpdateWidget(oldWidget);
   }
 
