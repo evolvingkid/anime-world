@@ -71,7 +71,7 @@ class AnimeNews extends GetxController {
       AnimeNewsModel _animeNewsTemp = AnimeNewsModel.convert(_item);
 
       if (_animeNewsData
-          .where((element) => element.id == _animeNewsTemp.id)
+          .where((element) => element.title == _animeNewsTemp.title)
           .toList()
           .isEmpty) {
         _animeNewsData.add(_animeNewsTemp);
