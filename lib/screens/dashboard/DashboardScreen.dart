@@ -87,13 +87,14 @@ class TabBarImageIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 41,
+      height: 39,
       child: Column(
         children: [
           icon,
           Text(
             text,
             overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 12),
           )
         ],
       ),

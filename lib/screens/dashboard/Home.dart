@@ -1,7 +1,9 @@
 import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
+import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:animeworld/widgets/NewsItemTile.dart';
+import 'package:animeworld/widgets/TitleWithButton.dart';
 import 'package:animeworld/widgets/WallpaperItem.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -40,8 +42,11 @@ class Home extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Trending Anime",
-                style: Theme.of(context).textTheme.headline6),
+            TitleWithButton(
+              title: "Trending Anime",
+              onTap: () {},
+              padding: const EdgeInsets.all(0),
+            ),
             Obx(
               () => animesState.isloading.value
                   ? const SizedBox()
@@ -61,12 +66,10 @@ class Home extends StatelessWidget {
                       }),
                     ),
             ),
-            Padding(
+            TitleWithButton(
+              title: "Latest News",
+              onTap: () {},
               padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                "Anime News",
-                style: Theme.of(context).textTheme.headline6,
-              ),
             ),
             GetX<AnimeNews>(
                 init: AnimeNews(),
@@ -82,12 +85,10 @@ class Home extends StatelessWidget {
                     },
                   );
                 }),
-            Padding(
+            TitleWithButton(
+              title: "Anime Wallpapers",
+              onTap: () {},
               padding: const EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                "Anime Wallpapers",
-                style: Theme.of(context).textTheme.headline6,
-              ),
             ),
             Container(
               width: double.infinity,

@@ -1,5 +1,7 @@
+import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/widgets/NewsItemTileWide.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import '../../core/configs/variables.dart' as config;
 
 class News extends StatelessWidget {
@@ -35,22 +37,17 @@ class News extends StatelessWidget {
             "Trending News",
             style: Theme.of(context).textTheme.headline6,
           ),
-          ListView(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.only(top: 10),
-            scrollDirection: Axis.vertical,
-            children: [
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-              NewsItemTileWide(scWidth: scWidth),
-            ],
-          ),
+          GetX<AnimeNews>(builder: (controller) {
+            return ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: controller.animeNewsData.length,
+              itemBuilder: (BuildContext context, int index) {
+                return NewsItemTileWide(
+                    scWidth: scWidth, data: controller.animeNewsData[index]);
+              },
+            );
+          }),
         ]),
       ),
     );

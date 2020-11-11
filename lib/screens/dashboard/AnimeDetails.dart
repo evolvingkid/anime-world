@@ -1,6 +1,5 @@
 import 'package:animeworld/Custom/ImageOrNetwork.dart';
 import 'package:animeworld/core/models/animeModels.dart';
-import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:flutter/material.dart';
 
 class AnimeDetails extends StatelessWidget {
@@ -165,17 +164,24 @@ class AnimeDetails extends StatelessWidget {
                   RaisedButton(
                     elevation: 0.0,
                     onPressed: () {},
-                    child: Text("Stream Episod"),
+                    child: Text("Stream Episod",
+                        style: Theme.of(context).textTheme.button),
                   ),
                   RaisedButton(
                     elevation: 0.0,
                     onPressed: () {},
-                    child: Text("Download"),
+                    child: Text(
+                      "Download",
+                      style: Theme.of(context).textTheme.button,
+                    ),
                   ),
                   RaisedButton(
                     elevation: 0.0,
                     onPressed: () {},
-                    child: Text("Torrent"),
+                    child: Text(
+                      "Torrent",
+                      style: Theme.of(context).textTheme.button,
+                    ),
                   ),
                 ],
               ),

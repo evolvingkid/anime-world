@@ -42,6 +42,7 @@ TextTheme textTheme() => TextTheme(
       bodyText2: TextStyle(fontFamily: 'QuattrocentoSans'),
       caption: TextStyle(fontFamily: 'QuattrocentoSans', fontSize: 10),
       subtitle2: TextStyle(fontFamily: 'QuattrocentoSans'),
+      button: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
     );
 
 TextTheme darkTextTheme() => TextTheme(
@@ -75,6 +76,7 @@ TextTheme darkTextTheme() => TextTheme(
       bodyText2: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
       caption: TextStyle(
           fontFamily: 'QuattrocentoSans', fontSize: 10, color: Colors.white),
+      button: TextStyle(fontFamily: 'QuattrocentoSans', color: Colors.white),
     );
 
 TextStyle white14 = new TextStyle(
