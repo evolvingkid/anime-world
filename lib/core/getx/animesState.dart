@@ -69,7 +69,6 @@ class AnimeState extends GetxController {
   }) async {
     String _url = 'api/anime_movies/list';
 
-    print('object');
     if (isPagenation) {
       skip = _animeData.length.toString();
       limit = 10.toString();
