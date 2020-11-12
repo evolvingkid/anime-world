@@ -7,11 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AnimeState extends GetxController {
-  static const String ongoing = "ONGOING";
-  static const String ova = "OVA";
-  static const String movies = "MOVIES";
-  static const String series = "SERIES";
-
   DioAPIServices _dioAPIServices = locator<DioAPIServices>();
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
