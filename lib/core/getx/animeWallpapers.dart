@@ -18,11 +18,12 @@ class AnimeWallpapers extends GetxController {
 
   List<AnimeWallpaperModels> get filterAnimeWallpaper {
     List<AnimeWallpaperModels> _tempAnimeData = [..._animeWallpaperData];
+    String _tempSearchTxt = _searchString.value;
 
     if (_searchString.value.isNotEmpty) {
       _tempAnimeData = _tempAnimeData
           .where((element) =>
-              element.title.toLowerCase().contains(_searchString.value))
+              element.title.toLowerCase().contains(_tempSearchTxt))
           .toList();
     }
 
@@ -42,7 +43,7 @@ class AnimeWallpapers extends GetxController {
     String skip,
     String limit,
   }) async {
-    String _url = 'api/anime_movies/list';
+    String _url = 'api/wallpaper/list';
 
     _url = animeQueryMaker(
       url: _url,

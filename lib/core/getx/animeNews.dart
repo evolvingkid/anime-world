@@ -49,7 +49,7 @@ class AnimeNews extends GetxController {
     String skip,
     String limit,
   }) async {
-    String _url = 'api/anime_movies/list';
+    String _url = 'api/news/list';
 
     _url = animeQueryMaker(
       url: _url,
