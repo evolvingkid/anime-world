@@ -10,10 +10,20 @@ import io.flutter.plugin.common.MethodChannel;
 
 public class MainActivity extends FlutterActivity {
  
-  @Override 
+  private static final String CHANNEL = "EASYWALLPAPER";
+  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    }
+   // ? this will not be needed in some version. This code line => GeneratedPluginRegistrant.registerWith(this.getFlutterEngine());
+  // new MethodChannel(getFlutterEngine().getDartExecutor().getBinaryMessenger(), CHANNEL).setMethodCallHandler(
+      //      new MethodChannel.MethodCallHandler() {
+      //        @Override
+       //       public void onMethodCall(MethodCall call, MethodChannel.Result result) {
+       //         if (call.method.equals("wallppaersetter")) {
+         //         System.out.print("Welcome"); 
+          //      }
+       //       }});
+  }
 
   // public void setWallpaper(String path){
   //   File f = new File(path);

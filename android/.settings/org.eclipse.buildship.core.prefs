@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=0ee8d3907892176f0fe1444a6bd727450b8be33b
 arguments=
 auto.sync=false
 build.scans.enabled=false
@@ -5,7 +8,7 @@ connection.gradle.distribution=GRADLE_DISTRIBUTION(WRAPPER)
 connection.project.dir=
 eclipse.preferences.version=1
 gradle.user.home=
-java.home=C\:/Program Files/Java/jdk-11.0.2
+java.home=C\:/Program Files/Java/jdk-14.0.2
 jvm.arguments=
 offline.mode=false
 override.workspace.settings=true
