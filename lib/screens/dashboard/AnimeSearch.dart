@@ -5,14 +5,45 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class AnimeSearch extends StatelessWidget {
+class AnimeSearch extends StatefulWidget {
+  @override
+  _AnimeSearchState createState() => _AnimeSearchState();
+}
+
+class _AnimeSearchState extends State<AnimeSearch> {
   final AnimeState animeState = Get.find();
+
+  String searchString = "";
+
+  ScrollController controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller.addListener(() {
+      //bottom
+      if (controller.offset >= controller.position.maxScrollExtent &&
+          !controller.position.outOfRange) {
+        print("bottom");
+        animeState.fetchDataFromServers(
+            title: searchString, isPagenation: true);
+      }
+      //top
+      if (controller.offset <= controller.position.minScrollExtent &&
+          !controller.position.outOfRange) {
+        print("top");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: TextField(
           onChanged: (val) {
+            searchString = val;
             animeState.filterData(searchTitle: val);
           },
           textInputAction: TextInputAction.search,
@@ -26,9 +57,10 @@ class AnimeSearch extends StatelessWidget {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 10),
+        padding: EdgeInsets.only(left: 10, top: 10),
         child: Obx(
           () => GridView.builder(
+              controller: controller,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 10,

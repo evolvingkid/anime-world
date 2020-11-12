@@ -103,13 +103,13 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
     String imgPath = generateFileName(widget.url, widget.ext);
     File imageFile = await fileFromDocsDir(imgPath + widget.ext);
     if (await imageFile.exists()) {
-      print(imageFile.path + "  Exist");
+      // print(imageFile.path + "  Exist");
       if (!mounted) return;
       setState(() {
         img = imageFile;
       });
     } else {
-      print(imageFile.path + " Not Exist");
+      // print(imageFile.path + " Not Exist");
       await downloadFile(
         url: widget.url,
         fileName: imgPath,
