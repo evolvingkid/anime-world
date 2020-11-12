@@ -12,20 +12,17 @@ class AllAnimes extends StatelessWidget {
     final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          onChanged: (val) {
-            animeState.filterData(searchTitle: val);
-          },
-          textInputAction: TextInputAction.search,
-          decoration: InputDecoration(
-            hintText: "Search Animes",
-            suffixIcon: IconButton(
-              icon: Icon(Icons.search_rounded),
-              onPressed: () {},
-            ),
-          ),
-        ),
+        title: Text("All"),
       ),
+      bottomNavigationBar: animeState.isloading.value
+          ? Container(
+              padding: EdgeInsets.all(15),
+              child: LinearProgressIndicator(
+                backgroundColor: Theme.of(context).buttonColor,
+              ))
+          : Container(
+              height: 0,
+            ),
       body: Container(
         padding: EdgeInsets.only(left: 10),
         child: Obx(
@@ -37,6 +34,13 @@ class AllAnimes extends StatelessWidget {
               ),
               itemCount: animeState.ovaAnime.length,
               itemBuilder: (ctx, index) {
+                if (animeState.ovaAnime.length < 15) {
+                  print("asd");
+                  animeState.fetchDataFromServers(
+                      itemType: data,
+                      limit: "15",
+                      skip: animeState.ovaAnime.length.toString());
+                }
                 return animeState.ovaAnime.length > 0
                     ? AnimeItem(data: animeState.ovaAnime[index])
                     : Container(
