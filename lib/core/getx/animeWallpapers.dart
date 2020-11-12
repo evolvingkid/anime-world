@@ -22,8 +22,8 @@ class AnimeWallpapers extends GetxController {
 
     if (_searchString.value.isNotEmpty) {
       _tempAnimeData = _tempAnimeData
-          .where((element) =>
-              element.title.toLowerCase().contains(_tempSearchTxt))
+          .where(
+              (element) => element.title.toLowerCase().contains(_tempSearchTxt))
           .toList();
     }
 
@@ -42,8 +42,14 @@ class AnimeWallpapers extends GetxController {
     String title,
     String skip,
     String limit,
+    bool isPagenation = false,
   }) async {
     String _url = 'api/wallpaper/list';
+
+    if (isPagenation) {
+      skip = _animeWallpaperData.length.toString();
+      limit = 10.toString();
+    }
 
     _url = animeQueryMaker(
       url: _url,

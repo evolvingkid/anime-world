@@ -48,8 +48,14 @@ class AnimeNews extends GetxController {
     String title,
     String skip,
     String limit,
+    bool isPagenation = false,
   }) async {
     String _url = 'api/news/list';
+
+    if (isPagenation) {
+      skip = _animeNewsData.length.toString();
+      limit = 10.toString();
+    }
 
     _url = animeQueryMaker(
       url: _url,
