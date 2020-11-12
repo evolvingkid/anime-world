@@ -5,10 +5,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class AnimeSearch extends StatelessWidget {
+class AllAnimes extends StatelessWidget {
   final AnimeState animeState = Get.find();
   @override
   Widget build(BuildContext context) {
+    final String data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -34,10 +35,10 @@ class AnimeSearch extends StatelessWidget {
                 mainAxisSpacing: 10,
                 childAspectRatio: 0.8,
               ),
-              itemCount: animeState.animeFilter.length,
+              itemCount: animeState.ovaAnime.length,
               itemBuilder: (ctx, index) {
-                return animeState.animeFilter.length > 0
-                    ? AnimeItem(data: animeState.animeFilter[index])
+                return animeState.ovaAnime.length > 0
+                    ? AnimeItem(data: animeState.ovaAnime[index])
                     : Container(
                         child: Text('No Data Found'),
                       );

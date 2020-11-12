@@ -153,12 +153,14 @@ class _ImageOrNetWorkState extends State<ImageOrNetWork> {
       height: widget.height,
       width: widget.width,
       child: img != null
-          ? Image.file(
-              img,
-              height: widget.height,
-              width: widget.width,
-              fit: widget.fit,
-              alignment: Alignment.topCenter,
+          ? Material(
+              child: Image.file(
+                img,
+                height: widget.height,
+                width: widget.width,
+                fit: widget.fit,
+                alignment: Alignment.topCenter,
+              ),
             )
           : Image.asset(
               'assets/images/logo.png',

@@ -44,7 +44,10 @@ class Home extends StatelessWidget {
           children: [
             TitleWithButton(
               title: "Trending Anime",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context)
+                    .pushNamed('/all_animes', arguments: "ONGOING");
+              },
               padding: const EdgeInsets.all(0),
             ),
             Obx(
