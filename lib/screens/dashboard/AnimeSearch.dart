@@ -31,7 +31,9 @@ class _AnimeSearchState extends State<AnimeSearch> {
       }
       //top
       if (controller.offset <= controller.position.minScrollExtent &&
-          !controller.position.outOfRange) {}
+          !controller.position.outOfRange) {
+        print("top");
+      }
     });
   }
 
@@ -55,7 +57,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(left: 10),
+        padding: EdgeInsets.only(left: 10, top: 10),
         child: Obx(
           () => GridView.builder(
               controller: controller,
