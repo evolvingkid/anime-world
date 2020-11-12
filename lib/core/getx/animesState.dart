@@ -1,3 +1,4 @@
+import 'package:animeworld/core/configs/variables.dart';
 import 'package:animeworld/core/database/animeHiveDatabase.dart';
 import 'package:animeworld/core/functions/animeQueryMaker.dart';
 import 'package:animeworld/core/models/animeModels.dart';
@@ -7,35 +8,42 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AnimeState extends GetxController {
-  static const String ongoing = "ONGOING";
-  static const String ova = "OVA";
-  static const String movies = "MOVIES";
-  static const String series = "SERIES";
-
   DioAPIServices _dioAPIServices = locator<DioAPIServices>();
   RxList<AnimeModels> _animeData = List<AnimeModels>().obs;
   AnimeHiveDatabase _animeHiveDatabase = AnimeHiveDatabase();
   var isloading = true.obs;
   RxString _searchString = ''.obs;
+  RxString _animeType = ''.obs;
 
   // * for ui acessing data
-  List<AnimeModels> get ongoingAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'ONGOING').toList();
-  List<AnimeModels> get seriesAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'SERIES').toList();
-  List<AnimeModels> get moviesAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'MOVIES').toList();
-  List<AnimeModels> get ovaAnime =>
-      _animeData.where((e) => e.itemType.toUpperCase() == 'OVA').toList();
+  List<AnimeModels> get ongoingAnime => _animeData
+      .where((e) => e.itemType.toUpperCase() == Animevalues.ongoing)
+      .toList();
+  List<AnimeModels> get seriesAnime => _animeData
+      .where((e) => e.itemType.toUpperCase() == Animevalues.series)
+      .toList();
+  List<AnimeModels> get moviesAnime => _animeData
+      .where((e) => e.itemType.toUpperCase() == Animevalues.movies)
+      .toList();
+  List<AnimeModels> get ovaAnime => _animeData
+      .where((e) => e.itemType.toUpperCase() == Animevalues.ova)
+      .toList();
 
   List<AnimeModels> get animeFilter {
     String searchString = _searchString.value;
     List<AnimeModels> _animeFilterData = [..._animeData];
+    String _typeAnimeType = _animeType.value;
 
     if (searchString.isNotEmpty) {
       _animeFilterData = _animeFilterData
           .where(
               (e) => e.title.toLowerCase().contains(searchString.toLowerCase()))
+          .toList();
+    }
+
+    if (!_typeAnimeType.isNullOrBlank) {
+      _animeFilterData = _animeFilterData
+          .where((element) => element.itemType.toUpperCase() == _typeAnimeType)
           .toList();
     }
 
@@ -61,6 +69,7 @@ class AnimeState extends GetxController {
   }) async {
     String _url = 'api/anime_movies/list';
 
+    print('object');
     if (isPagenation) {
       skip = _animeData.length.toString();
       limit = 10.toString();
@@ -114,10 +123,10 @@ class AnimeState extends GetxController {
     isloading.value = false;
   }
 
-  void filterData({String searchTitle}) {
+  void filterData({String searchTitle, String animeType}) {
     if (!searchTitle.isNullOrBlank) {
-      print('object');
       _searchString.value = searchTitle;
+      _animeType.value = animeType;
       fetchDataFromServers(title: searchTitle);
     }
   }
