@@ -33,7 +33,7 @@ class _ViewWallpaperState extends State<ViewWallpaper> {
     setState(() => _isLoading = false);
 
     if (!_isErrorOccred) {
-      notification(message: 'Image is saved on download folder');
+      notification(message: 'Image is saved');
     }
   }
 
