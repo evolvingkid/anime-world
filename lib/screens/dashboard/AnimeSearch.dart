@@ -30,7 +30,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
         animeState.fetchDataFromServers(
           title: searchString,
           skip: _skip.toString(),
-          limit: '10',
+          limit: '20',
         );
       }
       //top
@@ -61,7 +61,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
         ),
       ),
       bottomNavigationBar: Obx(
-               () => animeState.isloading.value
+        () => animeState.isloading.value
             ? Container(
                 padding: EdgeInsets.all(15),
                 child: LinearProgressIndicator(

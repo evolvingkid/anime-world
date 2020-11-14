@@ -222,16 +222,16 @@ class AnimeDetails extends StatelessWidget {
                     child: Text("Stream Episode",
                         style: Theme.of(context).textTheme.button),
                   ),
-                  RaisedButton(
-                    elevation: 0.0,
-                    onPressed: () {
-                      showDownload(context, data);
-                    },
-                    child: Text(
-                      "Download",
-                      style: Theme.of(context).textTheme.button,
-                    ),
-                  ),
+                  // RaisedButton(
+                  //   elevation: 0.0,
+                  //   onPressed: () {
+                  //     showDownload(context, data);
+                  //   },
+                  //   child: Text(
+                  //     "Download",
+                  //     style: Theme.of(context).textTheme.button,
+                  //   ),
+                  // ),
                   // RaisedButton(
                   //   elevation: 0.0,
                   //   onPressed: () {},
