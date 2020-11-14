@@ -28,6 +28,7 @@ dependencies:
   firebase_core: ^0.5.2
   firebase_messaging: ^7.0.3
   wallpaper_manager: "^1.0.10"
+  image_gallery_saver: '^1.6.3'
 
 
 dev_dependencies:

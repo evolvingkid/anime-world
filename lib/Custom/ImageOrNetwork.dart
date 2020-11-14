@@ -8,8 +8,10 @@ import 'package:convert/convert.dart';
 import 'package:crypto/crypto.dart' as crypto;
 
 class GetImageOrNetwork extends _ImageOrNetWorkState {
-  String pathFromUrl({String url, String ext = ".png"}) {
-    return generateFileName(url, ext);
+  Future<String> pathFromUrl({String url, String ext = ".png"}) async {
+    final appDocDir = await getApplicationDocumentsDirectory();
+    String pathName = p.join(appDocDir.path, generateFileName(url, ext));
+    return pathName;
   }
 
   Future<File> moveImageTo(
