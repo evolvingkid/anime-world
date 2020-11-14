@@ -21,7 +21,7 @@ class _WallpaperState extends State<Wallpaper> {
       //bottom
       if (controller.offset >= controller.position.maxScrollExtent &&
           !controller.position.outOfRange) {
-        print("bottom");
+       
         int _skip = animeState.animeWallpaperData.length;
         animeState.fetchDataFromServers(
           skip: _skip.toString(),
@@ -31,7 +31,7 @@ class _WallpaperState extends State<Wallpaper> {
       //top
       if (controller.offset <= controller.position.minScrollExtent &&
           !controller.position.outOfRange) {
-        print("top");
+       
       }
     });
   }

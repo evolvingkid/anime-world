@@ -25,7 +25,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
       //bottom
       if (controller.offset >= controller.position.maxScrollExtent &&
           !controller.position.outOfRange) {
-        print("bottom");
+      
         int _skip = animeState.animeFilter.length;
         animeState.fetchDataFromServers(
           title: searchString,
@@ -36,7 +36,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
       //top
       if (controller.offset <= controller.position.minScrollExtent &&
           !controller.position.outOfRange) {
-        print("top");
+ 
       }
     });
   }

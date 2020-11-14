@@ -82,16 +82,16 @@ class AnimeState extends GetxController {
       limit: limit,
     );
 
-    print(_url);
+ 
 
-    print('object');
+ 
     isloading.value = true;
 
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
 
-         print(_fetchdata);
+  
 
     if (_fetchdata.isNullOrBlank) return null;
 
@@ -104,7 +104,7 @@ class AnimeState extends GetxController {
           .where((element) => element.title == _animeTempData.title)
           .toList()
           .isEmpty) {
-        print('new file added');
+      
         _animeData.add(_animeTempData);
         _animeHiveDatabase.addData(_animeTempData);
       }

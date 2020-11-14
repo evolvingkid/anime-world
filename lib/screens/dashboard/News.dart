@@ -23,7 +23,7 @@ class _NewsState extends State<News> {
       //bottom
       if (controller.offset >= controller.position.maxScrollExtent &&
           !controller.position.outOfRange) {
-        print("bottom");
+     
         int _skip = animeState.animeNewsData.length;
         animeState.fetchdataFromServers(
           skip: _skip.toString(),
@@ -33,7 +33,7 @@ class _NewsState extends State<News> {
       //top
       if (controller.offset <= controller.position.minScrollExtent &&
           !controller.position.outOfRange) {
-        print("top");
+       
       }
     });
   }

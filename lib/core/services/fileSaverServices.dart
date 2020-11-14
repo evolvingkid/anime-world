@@ -25,16 +25,16 @@ class FileSaverServices {
         var raf = _file.openSync(mode: FileMode.write);
         raf.writeFromSync(data);
         await raf.close();
-        print(_filePath);
+     
        
         List<Uint8List> bytesList = [];
         bytesList.add(data);
         final _imageSaver =  ImageSaver();
         final res = await _imageSaver.saveImages(imageBytes: bytesList);
-        print(res);
+   
         return null;
       } catch (e) {
-        print(e);
+     
         throw e;
       }
     }

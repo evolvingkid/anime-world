@@ -26,7 +26,7 @@ class _AllAnimesState extends State<AllAnimes> {
       //bottom
       if (controller.offset >= controller.position.maxScrollExtent &&
           !controller.position.outOfRange) {
-        print("bottom");
+     
         int _skip = animeState.animeFilter.length;
         animeState.fetchDataFromServers(
           itemType: data,
@@ -37,7 +37,7 @@ class _AllAnimesState extends State<AllAnimes> {
       //top
       if (controller.offset <= controller.position.minScrollExtent &&
           !controller.position.outOfRange) {
-        print("top");
+  
       }
     });
   }

@@ -11,7 +11,7 @@ class AnimeDetails extends StatelessWidget {
         isScrollControlled: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         builder: (ctm) {
-          print(data.streamingData.length);
+       
           return SingleChildScrollView(
             child: data.streamingData.length > 0
                 ? ListView.builder(
