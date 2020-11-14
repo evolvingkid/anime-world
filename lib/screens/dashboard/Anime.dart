@@ -46,7 +46,10 @@ class Anime extends StatelessWidget {
           children: [
             TitleWithButton(
               title: "Trending Anime",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('/all_animes',
+                    arguments: config.Animevalues.ongoing);
+              },
             ),
             Container(
               width: double.infinity,
@@ -69,7 +72,10 @@ class Anime extends StatelessWidget {
             TitleWithButton(
               padding: const EdgeInsets.symmetric(vertical: 15),
               title: "Series",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('/all_animes',
+                    arguments: config.Animevalues.series);
+              },
             ),
             Container(
               width: double.infinity,
@@ -89,7 +95,10 @@ class Anime extends StatelessWidget {
             TitleWithButton(
               padding: const EdgeInsets.symmetric(vertical: 15),
               title: "Movies",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('/all_animes',
+                    arguments: config.Animevalues.movies);
+              },
             ),
             Container(
               width: double.infinity,
@@ -109,7 +118,10 @@ class Anime extends StatelessWidget {
             TitleWithButton(
               padding: const EdgeInsets.symmetric(vertical: 15),
               title: "OVA",
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pushNamed('/all_animes',
+                    arguments: config.Animevalues.ova);
+              },
             ),
             Container(
               width: double.infinity,

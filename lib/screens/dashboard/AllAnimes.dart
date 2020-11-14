@@ -6,13 +6,14 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class AllAnimes extends StatelessWidget {
-  final AnimeState animeState = Get.find();
+  AnimeState animeState = Get.find();
   @override
   Widget build(BuildContext context) {
     final String data = ModalRoute.of(context).settings.arguments;
+    animeState.filterData(animeType: data);
     return Scaffold(
       appBar: AppBar(
-        title: Text("All"),
+        title: Text(data),
       ),
       bottomNavigationBar: animeState.isloading.value
           ? Container(
@@ -32,17 +33,17 @@ class AllAnimes extends StatelessWidget {
                 mainAxisSpacing: 10,
                 childAspectRatio: 0.8,
               ),
-              itemCount: animeState.ovaAnime.length,
+              itemCount: animeState.animeFilter.length,
               itemBuilder: (ctx, index) {
-                if (animeState.ovaAnime.length < 15) {
-                  print("asd");
+                if (animeState.animeFilter.length < 15) {
                   animeState.fetchDataFromServers(
                       itemType: data,
                       limit: "15",
-                      skip: animeState.ovaAnime.length.toString());
+                      isPagenation: true,
+                      skip: animeState.animeFilter.length.toString());
                 }
-                return animeState.ovaAnime.length > 0
-                    ? AnimeItem(data: animeState.ovaAnime[index])
+                return animeState.animeFilter.length > 0
+                    ? AnimeItem(data: animeState.animeFilter[index])
                     : Container(
                         child: Text('No Data Found'),
                       );

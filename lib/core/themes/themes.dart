@@ -45,6 +45,7 @@ ThemeData darkThemes() {
     appBarTheme: AppBarTheme(color: bgDark, elevation: 0),
     textTheme: darkTextTheme(),
     scaffoldBackgroundColor: bgDark,
+    iconTheme: IconThemeData(color: Colors.white),
     accentColor: Color(0xff191C24),
     accentTextTheme: accentTextTheme(),
     inputDecorationTheme: InputDecorationTheme(
