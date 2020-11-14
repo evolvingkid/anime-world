@@ -4,11 +4,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-class AllAnimes extends StatelessWidget {
+class AllAnimes extends StatefulWidget {
+  @override
+  _AllAnimesState createState() => _AllAnimesState();
+}
+
+class _AllAnimesState extends State<AllAnimes> {
   AnimeState animeState = Get.find();
+
+  ScrollController controller = ScrollController();
+  String data;
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+
+    data = ModalRoute.of(context).settings.arguments;
+
+    controller.addListener(() {
+      //bottom
+      if (controller.offset >= controller.position.maxScrollExtent &&
+          !controller.position.outOfRange) {
+        print("bottom");
+        int _skip = animeState.animeFilter.length;
+        animeState.fetchDataFromServers(
+          itemType: data,
+          skip: _skip.toString(),
+          limit: '20',
+        );
+      }
+      //top
+      if (controller.offset <= controller.position.minScrollExtent &&
+          !controller.position.outOfRange) {
+        print("top");
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final String data = ModalRoute.of(context).settings.arguments;
     animeState.filterData(animeType: data);
     return Scaffold(
       appBar: AppBar(
@@ -29,6 +69,7 @@ class AllAnimes extends StatelessWidget {
         padding: EdgeInsets.only(left: 10),
         child: Obx(
           () => GridView.builder(
+              controller: controller,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 mainAxisSpacing: 10,
@@ -39,7 +80,7 @@ class AllAnimes extends StatelessWidget {
                 if (animeState.animeFilter.length < 15) {
                   animeState.fetchDataFromServers(
                       itemType: data,
-                      limit: "15",
+                      limit: "20",
                       skip: animeState.animeFilter.length.toString());
                 }
                 return animeState.animeFilter.length > 0
