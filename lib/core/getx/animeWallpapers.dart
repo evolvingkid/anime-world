@@ -74,7 +74,7 @@ class AnimeWallpapers extends GetxController {
           AnimeWallpaperModels.convert(_item);
 
       if (_animeWallpaperData
-          .where((element) => element.id == _animeWallpaperListTemp.first.id)
+          .where((element) => element.title == _animeWallpaperListTemp.first.title)
           .toList()
           .isEmpty) {
         _animeWallpaperData.addAll(_animeWallpaperListTemp);
