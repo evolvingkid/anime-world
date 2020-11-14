@@ -82,12 +82,16 @@ class AnimeState extends GetxController {
       limit: limit,
     );
 
+    print(_url);
+
     print('object');
     isloading.value = true;
 
     final _fetchdata = await _dioAPIServices
         .getAPI(url: _url)
         .catchError((e) => debugPrint(e.toString()));
+
+         print(_fetchdata);
 
     if (_fetchdata.isNullOrBlank) return null;
 
@@ -127,8 +131,11 @@ class AnimeState extends GetxController {
   void filterData({String searchTitle, String animeType}) {
     if (!searchTitle.isNullOrBlank) {
       _searchString.value = searchTitle;
-      _animeType.value = animeType;
       fetchDataFromServers(title: searchTitle);
+    }
+
+    if (!animeType.isNullOrBlank) {
+      _animeType.value = animeType;
     }
   }
 }

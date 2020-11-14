@@ -1,7 +1,6 @@
 import 'package:animeworld/core/getx/animesState.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
@@ -15,15 +14,17 @@ class AllAnimes extends StatelessWidget {
       appBar: AppBar(
         title: Text(data),
       ),
-      bottomNavigationBar: animeState.isloading.value
-          ? Container(
-              padding: EdgeInsets.all(15),
-              child: LinearProgressIndicator(
-                backgroundColor: Theme.of(context).buttonColor,
-              ))
-          : Container(
-              height: 0,
-            ),
+      bottomNavigationBar: Obx(
+        () => animeState.isloading.value
+            ? Container(
+                padding: EdgeInsets.all(15),
+                child: LinearProgressIndicator(
+                  backgroundColor: Theme.of(context).buttonColor,
+                ))
+            : Container(
+                height: 0,
+              ),
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 10),
         child: Obx(
@@ -39,7 +40,6 @@ class AllAnimes extends StatelessWidget {
                   animeState.fetchDataFromServers(
                       itemType: data,
                       limit: "15",
-                      isPagenation: true,
                       skip: animeState.animeFilter.length.toString());
                 }
                 return animeState.animeFilter.length > 0
