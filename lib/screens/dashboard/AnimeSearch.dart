@@ -60,15 +60,17 @@ class _AnimeSearchState extends State<AnimeSearch> {
           ),
         ),
       ),
-      bottomNavigationBar: animeState.isloading.value
-          ? Container(
-              padding: EdgeInsets.all(15),
-              child: LinearProgressIndicator(
-                backgroundColor: Theme.of(context).buttonColor,
-              ))
-          : Container(
-              height: 0,
-            ),
+      bottomNavigationBar: Obx(
+               () => animeState.isloading.value
+            ? Container(
+                padding: EdgeInsets.all(15),
+                child: LinearProgressIndicator(
+                  backgroundColor: Theme.of(context).buttonColor,
+                ))
+            : Container(
+                height: 0,
+              ),
+      ),
       body: Container(
         padding: EdgeInsets.only(left: 10, top: 10),
         child: Obx(
