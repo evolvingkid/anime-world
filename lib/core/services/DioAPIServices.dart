@@ -6,6 +6,8 @@ class DioAPIServices extends BaseAPIConfig {
   BaseOptions options =
       new BaseOptions(baseUrl: "http://animeworld.api.kaimly.com/");
 
+  final String _baseUrl = 'http://animeworld.api.kaimly.com';
+
   @override
   Future<List> getAPI({Map<String, String> addOnHeader, String url}) async {
     try {
@@ -49,5 +51,24 @@ class DioAPIServices extends BaseAPIConfig {
       {Map<String, String> addOnHeader, Map body, String url, int id}) {
     // TODO: implement putAPI
     throw UnimplementedError();
+  }
+
+  Future<dynamic> downloadFile(
+      {String url, Function(int, int) onReceiveProgress}) async {
+    Dio dio = Dio();
+
+    Response response = await dio.get(
+      url,
+      options: Options(
+          responseType: ResponseType.bytes,
+          followRedirects: false,
+          validateStatus: (status) => status < 500),
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    if (response.statusCode < 200 && response.statusCode > 226)
+      throw HttpException('', response.statusCode);
+
+    return response.data;
   }
 }
