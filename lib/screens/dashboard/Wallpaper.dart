@@ -5,10 +5,51 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
-class Wallpaper extends StatelessWidget {
+class Wallpaper extends StatefulWidget {
+  @override
+  _WallpaperState createState() => _WallpaperState();
+}
+
+class _WallpaperState extends State<Wallpaper> {
+  ScrollController controller = ScrollController();
+  AnimeWallpapers animeState = Get.find();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.addListener(() {
+      //bottom
+      if (controller.offset >= controller.position.maxScrollExtent &&
+          !controller.position.outOfRange) {
+        print("bottom");
+        int _skip = animeState.animeWallpaperData.length;
+        animeState.fetchDataFromServers(
+          skip: _skip.toString(),
+          limit: '20',
+        );
+      }
+      //top
+      if (controller.offset <= controller.position.minScrollExtent &&
+          !controller.position.outOfRange) {
+        print("top");
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: Obx(
+          () => animeState.isLoading.value
+              ? Container(
+                  padding: EdgeInsets.all(15),
+                  child: LinearProgressIndicator(
+                    backgroundColor: Theme.of(context).buttonColor,
+                  ))
+              : Container(
+                  height: 0,
+                ),
+        ),
         appBar: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,6 +72,7 @@ class Wallpaper extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
+          controller: controller,
           padding: EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

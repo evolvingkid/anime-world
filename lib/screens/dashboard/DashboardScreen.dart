@@ -11,10 +11,28 @@ import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
 // ignore: must_be_immutable
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen>
+    with SingleTickerProviderStateMixin {
   final animesState = Get.put(AnimeState());
+
   final animeNews = Get.put(AnimeNews());
+
   final animeWallpapers = Get.put(AnimeWallpapers());
+
+  TabController controller;
+
+  @override
+  void initState() {
+    // final currentAddress = Provider.of<AddressProvider>(context,listen: false).currentAddress;
+    controller = TabController(length: 4, vsync: this);
+    super.initState();
+  }
+
   FirebaseNotificationservices _firebaseMessaging =
       locator<FirebaseNotificationservices>();
 
@@ -40,37 +58,36 @@ class DashboardScreen extends StatelessWidget {
       onLaunch: onLaunch,
       onResume: onResume,
     );
-    return DefaultTabController(
-      length: 4,
-      child: Scaffold(
-          bottomNavigationBar: Container(
-            color: dark,
-            child: TabBar(
-              indicatorColor: Theme.of(context).primaryColor,
-              unselectedLabelColor: Color(0xffB4B3B3),
-              labelColor: Theme.of(context).selectedRowColor,
-              labelStyle: Theme.of(context).textTheme.bodyText1,
-              unselectedLabelStyle: Theme.of(context).textTheme.bodyText1,
-              labelPadding: EdgeInsets.symmetric(vertical: 5),
-              tabs: [
-                TabBarImageIcon(icon: Icon(Icons.home_rounded), text: "Home"),
-                TabBarImageIcon(icon: Icon(Icons.movie_rounded), text: "Anime"),
-                TabBarImageIcon(
-                    icon: Icon(Icons.wallpaper_rounded), text: "Wallpaper"),
-                TabBarImageIcon(
-                    icon: Icon(Icons.new_releases_rounded), text: "News"),
-              ],
-            ),
-          ),
-          body: TabBarView(
-            children: <Widget>[
-              Home(),
-              Anime(),
-              Wallpaper(),
-              News(),
+    return Scaffold(
+        bottomNavigationBar: Container(
+          color: dark,
+          child: TabBar(
+            controller: controller,
+            indicatorColor: Theme.of(context).primaryColor,
+            unselectedLabelColor: Color(0xffB4B3B3),
+            labelColor: Theme.of(context).selectedRowColor,
+            labelStyle: Theme.of(context).textTheme.bodyText1,
+            unselectedLabelStyle: Theme.of(context).textTheme.bodyText1,
+            labelPadding: EdgeInsets.symmetric(vertical: 5),
+            tabs: [
+              TabBarImageIcon(icon: Icon(Icons.home_rounded), text: "Home"),
+              TabBarImageIcon(icon: Icon(Icons.movie_rounded), text: "Anime"),
+              TabBarImageIcon(
+                  icon: Icon(Icons.wallpaper_rounded), text: "Wallpaper"),
+              TabBarImageIcon(
+                  icon: Icon(Icons.new_releases_rounded), text: "News"),
             ],
-          )),
-    );
+          ),
+        ),
+        body: TabBarView(
+          controller: controller,
+          children: <Widget>[
+            Home(controller: controller),
+            Anime(),
+            Wallpaper(),
+            News(),
+          ],
+        ));
   }
 }
 

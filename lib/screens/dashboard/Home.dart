@@ -10,6 +10,8 @@ import 'package:get/get.dart';
 import '../../core/configs/variables.dart' as config;
 
 class Home extends StatelessWidget {
+  Home({this.controller});
+  final TabController controller;
   final AnimeState animesState = Get.find();
 
   @override
@@ -71,7 +73,9 @@ class Home extends StatelessWidget {
             ),
             TitleWithButton(
               title: "Latest News",
-              onTap: () {},
+              onTap: () {
+                controller.index = 3;
+              },
               padding: const EdgeInsets.symmetric(vertical: 15),
             ),
             GetX<AnimeNews>(
@@ -90,7 +94,9 @@ class Home extends StatelessWidget {
                 }),
             TitleWithButton(
               title: "Anime Wallpapers",
-              onTap: () {},
+              onTap: () {
+                controller.index = 2;
+              },
               padding: const EdgeInsets.symmetric(vertical: 15),
             ),
             Container(
