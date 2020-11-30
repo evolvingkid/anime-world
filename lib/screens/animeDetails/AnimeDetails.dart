@@ -1,8 +1,9 @@
 import 'package:animeworld/Custom/ImageOrNetwork.dart';
 import 'package:animeworld/core/models/animeModels.dart';
-import 'package:animeworld/core/models/streamingModels.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'widgets/scroe_item.dart';
+import 'widgets/stramItems.dart';
+import 'widgets/text_row.dart';
 
 class AnimeDetails extends StatelessWidget {
   void showStreamEpisode(BuildContext context, AnimeModels data) {
@@ -11,7 +12,6 @@ class AnimeDetails extends StatelessWidget {
         isScrollControlled: true,
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         builder: (ctm) {
-       
           return SingleChildScrollView(
             child: data.streamingData.length > 0
                 ? ListView.builder(
@@ -62,23 +62,7 @@ class AnimeDetails extends StatelessWidget {
     final AnimeModels data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      floatingActionButton: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          margin: EdgeInsets.only(top: 15),
-          decoration: BoxDecoration(
-            color: Colors.black38,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: EdgeInsets.all(5),
-          child: Icon(
-            Icons.keyboard_arrow_left_rounded,
-            color: Colors.white,
-          ),
-        ),
-      ),
+      floatingActionButton: BackButton(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -222,24 +206,6 @@ class AnimeDetails extends StatelessWidget {
                     child: Text("Stream Episode",
                         style: Theme.of(context).textTheme.button),
                   ),
-                  // RaisedButton(
-                  //   elevation: 0.0,
-                  //   onPressed: () {
-                  //     showDownload(context, data);
-                  //   },
-                  //   child: Text(
-                  //     "Download",
-                  //     style: Theme.of(context).textTheme.button,
-                  //   ),
-                  // ),
-                  // RaisedButton(
-                  //   elevation: 0.0,
-                  //   onPressed: () {},
-                  //   child: Text(
-                  //     "Torrent",
-                  //     style: Theme.of(context).textTheme.button,
-                  //   ),
-                  // ),
                 ],
               ),
             )
@@ -250,123 +216,4 @@ class AnimeDetails extends StatelessWidget {
   }
 }
 
-class StreamItem extends StatelessWidget {
-  const StreamItem({
-    Key key,
-    this.data,
-  }) : super(key: key);
 
-  final StreamingModels data;
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        _launchURL(data.url);
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: ImageOrNetWork(
-                url: data.tumbline,
-                height: 50,
-                width: 50,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Expanded(
-              child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        data.title,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      Text(
-                        data.site,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption
-                            .merge(TextStyle(fontStyle: FontStyle.italic)),
-                      ),
-                    ],
-                  )),
-            ),
-            Icon(Icons.open_in_browser_rounded)
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class TextRow extends StatelessWidget {
-  const TextRow({
-    Key key,
-    @required this.title,
-    this.value,
-  }) : super(key: key);
-
-  final String title, value;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: Theme.of(context).textTheme.headline6,
-        ),
-        Text(
-          value,
-        ),
-      ],
-    );
-  }
-}
-
-class ScoreItem extends StatelessWidget {
-  const ScoreItem({
-    Key key,
-    @required this.value,
-    this.caption,
-  }) : super(key: key);
-
-  final int value;
-  final String caption;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-      children: [
-        Text(
-          value.toString(),
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        Text(
-          caption,
-          style: Theme.of(context).textTheme.caption,
-        ),
-      ],
-    ));
-  }
-}

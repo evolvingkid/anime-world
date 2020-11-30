@@ -1,8 +1,8 @@
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
-import 'package:animeworld/screens/dashboard/AllAnimes.dart';
+import 'package:animeworld/screens/dashboard/allAnime/AllAnimes.dart';
 import 'package:animeworld/screens/dashboard/AnimeSearch.dart';
-import 'package:animeworld/screens/dashboard/AnimeDetails.dart';
+import 'package:animeworld/screens/animeDetails/AnimeDetails.dart';
 import 'package:animeworld/screens/dashboard/NewsDetails.dart';
 import 'package:animeworld/screens/dashboard/ViewWallpaper.dart';
 import 'package:flutter/material.dart';
