@@ -23,7 +23,7 @@ jobs:
     - run: flutter pub get
     - run: flutter build apk
     
-    - run: curl -F chat_id="-1001215836518"  -F document=@"build/app/outputs/apk/release/app-release.apk"  -F caption="New Version of fudiyo patner app " https://api.telegram.org/bot1429781367:AAEEKucPZaad6YGDNhT2aCbZY34Ymx3nfTs/sendDocument
+    - run: curl -F chat_id="-419269758"  -F document=@"build/app/outputs/apk/release/app-release.apk"  -F caption="New Version of fudiyo patner app " https://api.telegram.org/bot1429781367:AAEEKucPZaad6YGDNhT2aCbZY34Ymx3nfTs/sendDocument
     - uses: actions/upload-artifact@v1
       with:
         name: release-apk
