@@ -7,7 +7,7 @@ on:
     
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
 
     - uses: actions/checkout@v1
@@ -23,8 +23,8 @@ jobs:
     - run: flutter pub get
     - run: flutter build apk
     
-  #  - run: COMMITS=$(git log --graph --pretty=format:'%s (%cr)' --abbrev-commit | grep "minutes\| hours") && curl -F chat_id="-419269758"  -F document=@"build/app/outputs/apk/release/app-release.apk"  -F caption="New Version of Anime world" https://api.telegram.org/bot1437567518:AAGAEecpgHoxQ_PqmQyHmT8VsVK6rtzUXdw/sendDocument
-   # - uses: actions/upload-artifact@v1
-    #  with:
-     #   name: release-apk
-      #  path: build/app/outputs/apk/release/app-release.apk
+    - run: COMMITS=$(git log --graph --pretty=format:'%s (%cr)' --abbrev-commit | grep "minutes\| hours") && curl -F chat_id="-419269758"  -F document=@"build/app/outputs/apk/release/app-release.apk"  -F caption="New Version of Anime world" https://api.telegram.org/bot1437567518:AAGAEecpgHoxQ_PqmQyHmT8VsVK6rtzUXdw/sendDocument
+    - uses: actions/upload-artifact@v1
+      with:
+        name: release-apk
+        path: build/app/outputs/apk/release/app-release.apk
