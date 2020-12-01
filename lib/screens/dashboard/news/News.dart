@@ -1,6 +1,7 @@
 import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/widgets/NewsItemTileWide.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
+import 'package:animeworld/widgets/listViewShimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
@@ -60,13 +61,16 @@ class _NewsState extends State<News> {
 
   GetX<AnimeNews> newsList(double scWidth) {
     return GetX<AnimeNews>(builder: (controller) {
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
-        itemCount: controller.animeNewsData.length,
-        itemBuilder: (BuildContext context, int index) => NewsItemTileWide(
-            scWidth: scWidth, data: controller.animeNewsData[index]),
-      );
+      return controller.isLoading.value
+          ? Center(child: ListViewShinner(width: scWidth * 0.6))
+          : ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: controller.animeNewsData.length,
+              itemBuilder: (BuildContext context, int index) =>
+                  NewsItemTileWide(
+                      scWidth: scWidth, data: controller.animeNewsData[index]),
+            );
     });
   }
 

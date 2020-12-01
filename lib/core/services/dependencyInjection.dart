@@ -1,3 +1,4 @@
+import 'package:animeworld/core/services/inappupdate.dart';
 import 'package:animeworld/core/services/urlLauchServies.dart';
 import 'package:get_it/get_it.dart';
 import 'animeworldservices.dart';
@@ -8,4 +9,5 @@ void serviceLocators() {
   locator.registerLazySingleton<FirebaseNotificationservices>(() => FirebaseNotificationservices());
   locator.registerLazySingleton<FileSaverServices>(() => FileSaverServices());
   locator.registerLazySingleton<URLLaunchServices>(() => URLLaunchServices());
+  locator.registerLazySingleton<InAppupdateServices>(() => InAppupdateServices());
 }

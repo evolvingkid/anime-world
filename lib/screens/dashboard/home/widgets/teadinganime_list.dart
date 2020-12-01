@@ -1,6 +1,7 @@
 
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
+import 'package:animeworld/widgets/gridloading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +16,7 @@ class TreandingAnimeList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => animesState.isloading.value
-          ? const SizedBox()
+          ? YoutubeShimmer()
           : Container(
               width: double.infinity,
               height: 193,

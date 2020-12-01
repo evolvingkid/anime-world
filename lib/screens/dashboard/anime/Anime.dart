@@ -1,9 +1,6 @@
-import 'package:animeworld/core/getx/animesState.dart';
-import 'package:animeworld/widgets/AnimeItem.dart';
 import 'package:animeworld/widgets/TitleWithButton.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_getx_widget.dart';
 import '../../../core/configs/variables.dart' as config;
 import 'widgets/animeMovies.dart';
 import 'widgets/animeOVA.dart';

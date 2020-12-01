@@ -3,7 +3,7 @@ description: anime world app
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 2.0.0+7
+version: 2.0.1+8
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -31,6 +31,10 @@ dependencies:
   # file saver
   permission_handler: ^5.0.1+1
   save_in_gallery: ^0.1.3
+  # ui
+  shimmer: ^1.1.2
+  #other
+  in_app_update: ^1.1.14
 
 
 dev_dependencies:

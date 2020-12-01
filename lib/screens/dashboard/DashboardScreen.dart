@@ -1,6 +1,7 @@
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/core/services/dependencyInjection.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
+import 'package:animeworld/core/services/inappupdate.dart';
 import 'package:animeworld/core/themes/textThemes/textTheme.dart';
 import 'package:animeworld/screens/dashboard/anime/Anime.dart';
 import 'package:animeworld/screens/dashboard/home/Home.dart';
@@ -22,6 +23,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   final animeNews = Get.put(AnimeNews());
   final animeWallpapers = Get.put(AnimeWallpapers());
   TabController controller;
+  InAppupdateServices _inAppupdateServices = locator<InAppupdateServices>();
 
   @override
   void initState() {
@@ -51,6 +53,8 @@ class _DashboardScreenState extends State<DashboardScreen>
       onLaunch: onLaunch,
       onResume: onResume,
     );
+
+    _inAppupdateServices.checkForUpdate();
     return Scaffold(
       body: TabBarView(
         controller: controller,
