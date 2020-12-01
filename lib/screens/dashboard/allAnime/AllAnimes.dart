@@ -79,12 +79,12 @@ class _AllAnimesState extends State<AllAnimes> {
         ? AnimeItem(data: data)
         : Container(child: Text('No Data Found'));
   }
+}
 
-  SliverGridDelegateWithFixedCrossAxisCount customGridDelegate() {
-    return SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 3,
-      mainAxisSpacing: 10,
-      childAspectRatio: 0.8,
-    );
-  }
+SliverGridDelegateWithFixedCrossAxisCount customGridDelegate() {
+  return SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 3,
+    mainAxisSpacing: 10,
+    childAspectRatio: 0.8,
+  );
 }
