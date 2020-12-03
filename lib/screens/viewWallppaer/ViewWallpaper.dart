@@ -1,4 +1,6 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:animeworld/Custom/ImageOrNetwork.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/models/animeWallpaperModels.dart';
 import 'package:animeworld/core/services/animeworldservices.dart';
 import 'package:animeworld/core/services/dependencyInjection.dart';
@@ -46,7 +48,15 @@ class _ViewWallpaperState extends State<ViewWallpaper> {
         key: _key,
         floatingActionButton: saveToGalleryBtn(data, context),
         body: Center(child: ImageOrNetWork(url: data.image)),
-        bottomNavigationBar: loadingScreen());
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AdmobBanner(
+                adUnitId: AdManager.bannerAdUnitId,
+                adSize: AdmobBannerSize.BANNER),
+            loadingScreen(),
+          ],
+        ));
   }
 
   Widget loadingScreen() => _isLoading
@@ -55,7 +65,7 @@ class _ViewWallpaperState extends State<ViewWallpaper> {
           width: double.infinity,
           child: LinearProgressIndicator(
               backgroundColor: Theme.of(context).scaffoldBackgroundColor))
-      : null;
+      : Container();
 
   RaisedButton saveToGalleryBtn(
       AnimeWallpaperModels data, BuildContext context) {

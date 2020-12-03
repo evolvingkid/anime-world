@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/widgets/TitleWithButton.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class Anime extends StatelessWidget {
           OnGoingAnimeList(),
           animeSeriesTitle(context),
           AnimeSeriserList(),
+          SizedBox(height:10),
+        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.BANNER),
           animeMoviesTitle(context),
           AnimeMoviesList(),
           animeOVATitle(context),

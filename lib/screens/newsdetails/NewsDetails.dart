@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/screens/newsdetails/widgets/imagePostion.dart';
 import 'package:flutter/material.dart';
@@ -19,10 +21,13 @@ class NewsDetails extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Text(data.description)),
+        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.LARGE_BANNER),
+
           Padding(
               padding: const EdgeInsets.only(
                   top: 10, left: 10, right: 10, bottom: 10),
               child: Text("${data.content}")),
+        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
         ],
       ),
     );

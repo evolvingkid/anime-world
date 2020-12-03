@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/widgets/WallpaperItem.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
@@ -43,10 +45,18 @@ class _WallpaperState extends State<Wallpaper> {
           wallpaperListView(),
         ],
       ),
-      bottomNavigationBar: Obx(
-        () => animeState.isLoading.value
-            ? loadingScreen(context)
-            : const SizedBox(),
+      bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+        children: [
+            AdmobBanner(
+                adUnitId: AdManager.bannerAdUnitId,
+                adSize: AdmobBannerSize.BANNER),
+          Obx(
+            () => animeState.isLoading.value
+                ? loadingScreen(context)
+                : const SizedBox(),
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/getx/animeNews.dart';
 import 'package:animeworld/widgets/NewsItemTileWide.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
@@ -50,13 +52,20 @@ class _NewsState extends State<News> {
     );
   }
 
-  Obx loadingNews(BuildContext context) {
-    return Obx(() => animeState.isLoading.value
-        ? Container(
-            padding: EdgeInsets.all(15),
-            child: LinearProgressIndicator(
-                backgroundColor: Theme.of(context).buttonColor))
-        : const SizedBox());
+  Widget loadingNews(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        AdmobBanner(
+            adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.BANNER),
+        Obx(() => animeState.isLoading.value
+            ? Container(
+                padding: EdgeInsets.all(15),
+                child: LinearProgressIndicator(
+                    backgroundColor: Theme.of(context).buttonColor))
+            : const SizedBox()),
+      ],
+    );
   }
 
   GetX<AnimeNews> newsList(double scWidth) {

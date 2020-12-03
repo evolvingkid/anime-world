@@ -1,3 +1,4 @@
+import 'package:admob_flutter/admob_flutter.dart';
 import 'package:animeworld/core/models/animeNewsModel.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
 import 'package:animeworld/screens/dashboard/allAnime/AllAnimes.dart';
@@ -16,6 +17,8 @@ import 'package:path_provider/path_provider.dart' as path_Provider;
 
 void main() async {
   serviceLocators();
+
+  Admob.initialize();
   WidgetsFlutterBinding.ensureInitialized();
   final appDocumnetDirectory =
       await path_Provider.getApplicationDocumentsDirectory();

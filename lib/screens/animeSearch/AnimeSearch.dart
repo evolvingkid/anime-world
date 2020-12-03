@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/getx/animesState.dart';
 import 'package:animeworld/screens/dashboard/allAnime/AllAnimes.dart';
 import 'package:animeworld/widgets/AnimeItem.dart';
@@ -50,13 +52,21 @@ class _AnimeSearchState extends State<AnimeSearch> {
                   : Container(child: Text('No Data Found'));
             }),
       ),
-      bottomNavigationBar: Obx(
-        () => animeState.isloading.value
-            ? Container(
-                padding: EdgeInsets.all(15),
-                child: LinearProgressIndicator(
-                    backgroundColor: Theme.of(context).buttonColor))
-            : const SizedBox(),
+      bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+        children: [
+            AdmobBanner(
+                adUnitId: AdManager.bannerAdUnitId,
+                adSize: AdmobBannerSize.BANNER),
+          Obx(
+            () => animeState.isloading.value
+                ? Container(
+                    padding: EdgeInsets.all(15),
+                    child: LinearProgressIndicator(
+                        backgroundColor: Theme.of(context).buttonColor))
+                : const SizedBox(),
+          ),
+        ],
       ),
     );
   }
