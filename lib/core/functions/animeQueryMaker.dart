@@ -7,6 +7,7 @@ String animeQueryMaker({
   String itemType,
   String skip,
   String limit,
+  String sortBy,
 }) {
   if (title != null) {
     if (title.isNotEmpty) {
@@ -29,6 +30,12 @@ String animeQueryMaker({
   if (limit != null) {
     if (limit.isNotEmpty) {
       url = querryAdder(url: url, key: 'limit', values: limit);
+    }
+  }
+
+  if (sortBy != null) {
+    if (sortBy.isNotEmpty) {
+      url = querryAdder(url: url, key: 'sortBy', values: sortBy);
     }
   }
 

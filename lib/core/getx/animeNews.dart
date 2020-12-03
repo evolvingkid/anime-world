@@ -11,13 +11,27 @@ class AnimeNews extends GetxController {
   List<AnimeNewsModel> _animeNewsData = List<AnimeNewsModel>().obs;
   AnimeNewsDatabase _animeNewsDatabase = AnimeNewsDatabase();
   RxString _searchTitle = ''.obs;
+  bool _isdataReverted = false;
 
   List<AnimeNewsModel> get animeNewsData => [..._animeNewsData];
+
+  List<AnimeNewsModel> get animeNewsFullData {
+    if (!_isdataReverted) {
+      print('object');
+      _isdataReverted = true;
+      return [..._animeNewsData];
+    }
+    return [..._animeNewsData.reversed.toList()];
+  }
+
   List<AnimeNewsModel> get animeNewsMini {
     if (_animeNewsData.length < 3) {
-      return _animeNewsData;
+      return _animeNewsData.reversed.toList();
     }
-    return _animeNewsData.getRange(0, 3).toList();
+
+    List<AnimeNewsModel> _tempAnimeData = [..._animeNewsData.reversed.toList()];
+
+    return _tempAnimeData.getRange(0, 3).toList();
   }
 
   List<AnimeNewsModel> get filterAnimeNews {
@@ -63,6 +77,7 @@ class AnimeNews extends GetxController {
       itemType: itemType,
       skip: skip,
       limit: limit,
+      sortBy: 'createdAt',
     );
 
     isLoading.value = true;

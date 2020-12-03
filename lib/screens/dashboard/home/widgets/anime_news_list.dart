@@ -19,7 +19,7 @@ class AnimeNewsList extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return NewsItemTile(
                     scWidth: screenWidth,
-                    data: controller.animeNewsData[index]);
+                    data: controller.animeNewsMini[index]);
               },
             );
     });

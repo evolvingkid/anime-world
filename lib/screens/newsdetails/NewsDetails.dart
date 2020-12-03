@@ -12,23 +12,19 @@ class NewsDetails extends StatelessWidget {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       floatingActionButton: BackBtn(),
-      body: SingleChildScrollView(
-        child: ListView(
-          children: [
-            ImagePostions(scWidth: scWidth, data: data),
-            const SizedBox(height: 10),
-            Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-                child: Text(data.description)),
-            Padding(
-                padding: const EdgeInsets.only(
-                    top: 10, left: 10, right: 10, bottom: 10),
-                child: Text("${data.content}")),
-          ],
-        ),
+      body: ListView(
+        children: [
+          ImagePostions(scWidth: scWidth, data: data),
+          const SizedBox(height: 10),
+          Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+              child: Text(data.description)),
+          Padding(
+              padding: const EdgeInsets.only(
+                  top: 10, left: 10, right: 10, bottom: 10),
+              child: Text("${data.content}")),
+        ],
       ),
     );
   }
 }
-
-
