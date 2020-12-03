@@ -11,7 +11,6 @@
         android:label="animeworld"
         android:icon="@mipmap/ic_launcher">
 
-     
 
         <activity
             android:name=".MainActivity"

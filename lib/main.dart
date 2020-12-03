@@ -6,6 +6,7 @@ import 'package:animeworld/screens/animeDetails/AnimeDetails.dart';
 import 'package:animeworld/screens/newsdetails/NewsDetails.dart';
 import 'package:animeworld/screens/viewWallppaer/ViewWallpaper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:hive/hive.dart';
 import './screens/animeworldscreens.dart';
 import 'core/models/animeWallpaperModels.dart';
@@ -17,6 +18,9 @@ import 'package:path_provider/path_provider.dart' as path_Provider;
 void main() async {
   serviceLocators();
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(
+      debug: true // optional: set false to disable printing logs to console
+      );
   final appDocumnetDirectory =
       await path_Provider.getApplicationDocumentsDirectory();
   Hive.registerAdapter(AnimeModelsAdapter());

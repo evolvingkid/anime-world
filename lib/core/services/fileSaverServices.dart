@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart' as path_Provider;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:crypto/crypto.dart' as crypto;
-import  'package:save_in_gallery/save_in_gallery.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 class FileSaverServices {
   Future<Directory> getApplicationDir() async {
@@ -25,16 +25,14 @@ class FileSaverServices {
         var raf = _file.openSync(mode: FileMode.write);
         raf.writeFromSync(data);
         await raf.close();
-     
-       
+
         List<Uint8List> bytesList = [];
         bytesList.add(data);
-        final _imageSaver =  ImageSaver();
-        final res = await _imageSaver.saveImages(imageBytes: bytesList);
-   
+        final _imageSaver = ImageGallerySaver();
+        final res = await ImageGallerySaver.saveFile(_file.path);
+
         return null;
       } catch (e) {
-     
         throw e;
       }
     }
