@@ -36,6 +36,8 @@ dependencies:
   shimmer: ^1.1.2
   #other
   in_app_update: ^1.1.14
+  #ads
+  admob_flutter: ^1.0.1
 
 
 dev_dependencies:

@@ -1,3 +1,4 @@
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/core/services/dependencyInjection.dart';
 import 'package:animeworld/core/services/firebaseServices.dart';
@@ -24,7 +25,6 @@ class _DashboardScreenState extends State<DashboardScreen>
   final animeWallpapers = Get.put(AnimeWallpapers());
   TabController controller;
   InAppupdateServices _inAppupdateServices = locator<InAppupdateServices>();
-
   @override
   void initState() {
     controller = TabController(length: 4, vsync: this);

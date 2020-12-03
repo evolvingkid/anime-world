@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/models/animeModels.dart';
 import 'package:flutter/material.dart';
 import 'widgets/Top_bar.dart';
@@ -33,6 +35,9 @@ class AnimeDetails extends StatelessWidget {
           TopBar(data: data),
           const SizedBox(height: 10),
           scoreBoard(data),
+          AdmobBanner(
+              adUnitId: AdManager.bannerAdUnitId,
+              adSize: AdmobBannerSize.BANNER),
           const SizedBox(height: 10),
           descTitle(context),
           desc(data),
@@ -43,7 +48,10 @@ class AnimeDetails extends StatelessWidget {
             data: data,
             onStreamingPressed: (val) =>
                 onStreamingpressed(context: context, animeData: val),
-          )
+          ),
+          AdmobBanner(
+              adUnitId: AdManager.bannerAdUnitId,
+              adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
         ],
       ),
     );

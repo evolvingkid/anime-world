@@ -1,3 +1,5 @@
+import 'package:admob_flutter/admob_flutter.dart';
+import 'package:animeworld/core/ads/ad_manager.dart';
 import 'package:animeworld/core/getx/animeWorldStates.dart';
 import 'package:animeworld/widgets/TitleWithButton.dart';
 import 'package:animeworld/widgets/customAppBar.dart';
@@ -28,6 +30,9 @@ class Home extends StatelessWidget {
           TreandingAnimeList(animesState: animesState),
           latestNewsAnimeTitle(),
           AnimeNewsList(),
+          AdmobBanner(
+              adUnitId: AdManager.bannerAdUnitId,
+              adSize: AdmobBannerSize.BANNER),
           animeWallpaperTitle(),
           AnimeWallpaperList()
         ],
@@ -65,6 +70,4 @@ class Home extends StatelessWidget {
       padding: const EdgeInsets.all(0),
     );
   }
-
-
 }
