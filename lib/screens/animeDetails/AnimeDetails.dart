@@ -36,8 +36,8 @@ class AnimeDetails extends StatelessWidget {
           const SizedBox(height: 10),
           scoreBoard(data),
           AdmobBanner(
-              adUnitId: AdManager.bannerAdUnitId,
-              adSize: AdmobBannerSize.BANNER),
+              adUnitId: AdManager.animeDetailsBanner,
+              adSize: AdmobBannerSize.LARGE_BANNER),
           const SizedBox(height: 10),
           descTitle(context),
           desc(data),
@@ -50,7 +50,7 @@ class AnimeDetails extends StatelessWidget {
                 onStreamingpressed(context: context, animeData: val),
           ),
           AdmobBanner(
-              adUnitId: AdManager.bannerAdUnitId,
+              adUnitId: AdManager.animeDetailsSquareBanner,
               adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
         ],
       ),

@@ -57,7 +57,7 @@ class _NewsState extends State<News> {
       mainAxisSize: MainAxisSize.min,
       children: [
         AdmobBanner(
-            adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.BANNER),
+            adUnitId: AdManager.newsBanner, adSize: AdmobBannerSize.BANNER),
         Obx(() => animeState.isLoading.value
             ? Container(
                 padding: EdgeInsets.all(15),

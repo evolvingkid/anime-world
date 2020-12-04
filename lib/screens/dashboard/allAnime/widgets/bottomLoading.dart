@@ -13,7 +13,7 @@ class BottomLoading extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         AdmobBanner(
-            adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.BANNER),
+            adUnitId: AdManager.allanimeBanner, adSize: AdmobBannerSize.BANNER),
         Obx(() => animeState.isloading.value
             ? Container(
                 padding: EdgeInsets.all(15),

@@ -31,7 +31,7 @@ class Home extends StatelessWidget {
           latestNewsAnimeTitle(),
           AnimeNewsList(),
           AdmobBanner(
-              adUnitId: AdManager.bannerAdUnitId,
+              adUnitId: AdManager.homeBanner,
               adSize: AdmobBannerSize.BANNER),
           animeWallpaperTitle(),
           AnimeWallpaperList()

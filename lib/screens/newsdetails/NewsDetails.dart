@@ -21,13 +21,13 @@ class NewsDetails extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Text(data.description)),
-        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.LARGE_BANNER),
+        AdmobBanner(adUnitId: AdManager.viewnewsBanner, adSize: AdmobBannerSize.LARGE_BANNER),
 
           Padding(
               padding: const EdgeInsets.only(
                   top: 10, left: 10, right: 10, bottom: 10),
               child: Text("${data.content}")),
-        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
+        AdmobBanner(adUnitId: AdManager.viewnewsSquareBanner, adSize: AdmobBannerSize.MEDIUM_RECTANGLE),
         ],
       ),
     );

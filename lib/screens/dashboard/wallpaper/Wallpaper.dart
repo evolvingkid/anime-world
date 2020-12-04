@@ -49,7 +49,7 @@ class _WallpaperState extends State<Wallpaper> {
           mainAxisSize: MainAxisSize.min,
         children: [
             AdmobBanner(
-                adUnitId: AdManager.bannerAdUnitId,
+                adUnitId: AdManager.wallpaperBanner,
                 adSize: AdmobBannerSize.BANNER),
           Obx(
             () => animeState.isLoading.value

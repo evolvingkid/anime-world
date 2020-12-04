@@ -52,7 +52,7 @@ class _ViewWallpaperState extends State<ViewWallpaper> {
           mainAxisSize: MainAxisSize.min,
           children: [
             AdmobBanner(
-                adUnitId: AdManager.bannerAdUnitId,
+                adUnitId: AdManager.viewwallpaperBanner,
                 adSize: AdmobBannerSize.BANNER),
             loadingScreen(),
           ],
