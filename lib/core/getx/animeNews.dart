@@ -97,6 +97,7 @@ class AnimeNews extends GetxController {
           .isEmpty) {
         _animeNewsData.add(_animeNewsTemp);
         _animeNewsDatabase.addData(_animeNewsTemp);
+        print('object');
       }
     }
 

@@ -18,9 +18,9 @@ import 'package:path_provider/path_provider.dart' as path_Provider;
 
 void main() async {
   serviceLocators();
-
-  Admob.initialize();
   WidgetsFlutterBinding.ensureInitialized();
+  Admob.initialize();
+
   await FlutterDownloader.initialize(
       debug: true // optional: set false to disable printing logs to console
       );
