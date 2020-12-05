@@ -25,8 +25,10 @@ class Anime extends StatelessWidget {
           OnGoingAnimeList(),
           animeSeriesTitle(context),
           AnimeSeriserList(),
-          SizedBox(height:10),
-        AdmobBanner(adUnitId: AdManager.bannerAdUnitId, adSize: AdmobBannerSize.BANNER),
+          SizedBox(height: 10),
+          AdmobBanner(
+              adUnitId: AdManager.animeBanner,
+              adSize: AdmobBannerSize.BANNER),
           animeMoviesTitle(context),
           AnimeMoviesList(),
           animeOVATitle(context),

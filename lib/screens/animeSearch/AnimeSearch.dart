@@ -56,7 +56,7 @@ class _AnimeSearchState extends State<AnimeSearch> {
           mainAxisSize: MainAxisSize.min,
         children: [
             AdmobBanner(
-                adUnitId: AdManager.bannerAdUnitId,
+                adUnitId: AdManager.animeSearchBanner,
                 adSize: AdmobBannerSize.BANNER),
           Obx(
             () => animeState.isloading.value
